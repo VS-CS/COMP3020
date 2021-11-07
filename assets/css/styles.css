@@ -1,3 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.screen_aspect_ratio {
+    aspect-ratio: 9/16;
+    border-style: solid;
+    border-radius: 1vh;
+    border-color: black;
+    background-color: rgb(247, 247, 247);
+    max-height: 98vh;
+    margin: auto;
+    position: relative;
+    top:0;bottom:0;
+    left:0;right:0;
+}
+
 /*------------------ Font Link ------------------*/
 
     /*------------------ Colors ------------------*/
