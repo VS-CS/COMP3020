@@ -16,6 +16,42 @@
     left:0;right:0;
 }
 
+.top-bar {
+    height: 10%;
+}
+
+.body {
+    height: 90%;
+}
+
+.image {
+    position: absolute;
+    height: auto;
+    display: block;
+}
+
+.img_Detective {
+    
+}
+
+.img_Balance {
+    max-height: 10vh;
+    top: 0;
+    left: 0;
+}
+
+.img_History {
+    max-height: 10vh;
+    top: 0;
+    left: 0;
+}
+
+.img_Settings {
+    max-height: 10vh;
+    top: 0;
+    left: 0;
+}
+
 /*------------------ Font Link ------------------*/
 
     /*------------------ Colors ------------------*/

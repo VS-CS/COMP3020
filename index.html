@@ -3,18 +3,45 @@
     <head>
         <title>Document</title>
         <meta charset="UTF-8">
-        <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <!------------------ Favicon ------------------> 
 
         <!------------------ Local Files ------------------> 
         <link rel="stylesheet" href="assets/css/styles.css">
-        <script src="/assets/javascript/main.js"></script>
+        <script src="assets/javascript/main.js"></script>
     </head>
     <body>
         <div class="screen_aspect_ratio">
-            
+            <div id="main" style="height: 100%;">
+                <p>This is the START!</p>
+                <button onclick="ChangePageTo('home')">home</button>
+            </div>
         </div>
     </body>
 </html>
+
+
+
+<!-- Pages -->
+<div hidden>
+
+    <!-- Home Page -->
+    <div id=home>
+        <div class="top-bar">
+            <img src="assets/images/Balance.svg" class="image img_Balance">
+            <img src="assets/images/History.svg" class="image img_History">
+            <img src="assets/images/Settings.svg" class="image img_Settings">
+        </div>
+        <div class="body">
+            <p>This is home!</p>
+            <button onclick="ChangePageTo('add_income')">add_income</button>
+            <img src="assets/images/Detective.svg" class="image img_Detective">
+            
+        </div>
+    </div>
+
+    <!-- Add Income Page -->
+    <div id=add_income>
+        <p>This is add_income!</p>
+        <button onclick="ChangePageTo('home')">home</button>
+    </div>
+</div>
