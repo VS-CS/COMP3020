@@ -9,11 +9,10 @@
         <link rel="stylesheet" href="assets/css/styles.css">
         <script src="assets/javascript/main.js"></script>
     </head>
-    <body>
+    <body onload="ChangePageTo('home')">
         <div class="screen_aspect_ratio">
             <div id="main" class="main">
-                <p>This is the START!</p>
-                <button onclick="ChangePageTo('home')">home</button>
+                
             </div>
         </div>
     </body>
@@ -28,13 +27,13 @@
     <div id=home>
         <div class="top-bar">
             <div class="tb-child">
-                <img src="assets/images/Balance.svg" class="image">
+                <img src="assets/images/Balance.svg" class="image img-balance">
             </div>
-            <div class="tb-child" style="margin-left: auto;">
-                <img src="assets/images/History.svg" class="image" onclick="ChangePageTo('history')">
+            <div class="tb-child float-down" style="margin-left: auto;">
+                <img src="assets/images/History.svg" class="image img-history" onclick="ChangePageTo('history')">
             </div>
-            <div class="tb-child">
-                <img src="assets/images/Settings.svg" class="image" onclick="ChangePageTo('settings')">
+            <div class="tb-child float-down">
+                <img src="assets/images/Settings.svg" class="image img-settings" onclick="ChangePageTo('settings')">
             </div>
         </div>
         <div class="body">
