@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="assets/css/styles.css">
         <script src="assets/javascript/main.js"></script>
     </head>
-    <body onload="ChangePageTo('home')">
+    <body onload="changePageTo('home')">
         <div class="screen_aspect_ratio">
             <div id="main" class="main">
                 
@@ -24,27 +24,27 @@
 <div hidden>
 
     <!-- Home Page -->
-    <div id=home>
+    <div id=home onload="insertTopBarContent()">
         <div class="top-bar">
             <div class="tb-child">
                 <img src="assets/images/Balance.svg" class="image img-balance">
             </div>
             <div class="tb-child float-down" style="margin-left: auto;">
-                <img src="assets/images/History.svg" class="image img-history" onclick="ChangePageTo('history')">
+                <img src="assets/images/History.svg" class="image img-history" onclick="changePageTo('history')">
             </div>
             <div class="tb-child float-down">
-                <img src="assets/images/Settings.svg" class="image img-settings" onclick="ChangePageTo('settings')">
+                <img src="assets/images/Settings.svg" class="image img-settings" onclick="changePageTo('settings')">
             </div>
         </div>
         <div class="body">
             <div class="dialog-box">
                 This is home!
             </div>
-            <div class="dialog-options">
-                <button onclick="ChangePageTo('add_income')">add_income</button>
-                <button onclick="ChangePageTo('add_expense')">add_expense</button>
-                <button onclick="ChangePageTo('analysis')">analysis</button>
-                <button onclick="ChangePageTo('budgets')">budgets</button>
+            <div class="dialog-options-wrapper">
+                <div onclick="changePageTo('add_income')" class="dialog-options">add_income</div>
+                <div onclick="changePageTo('add_expense')" class="dialog-options">add_expense</div>
+                <div onclick="changePageTo('analysis')" class="dialog-options">analysis</div>
+                <div onclick="changePageTo('budgets')" class="dialog-options">budgets</div>
             </div>
         </div>
     </div>
@@ -52,36 +52,36 @@
     <!-- Add Income Page -->
     <div id=add_income>
         <p>This is add_income!</p>
-        <button onclick="ChangePageTo('home')">home</button>
+        <button onclick="changePageTo('home')">home</button>
     </div>
 
     <!-- Add Expense Page -->
     <div id=add_expense>
         <p>This is add_expense!</p>
-        <button onclick="ChangePageTo('home')">home</button>
+        <button onclick="changePageTo('home')">home</button>
     </div>
 
     <!-- Analysis Page -->
     <div id=analysis>
         <p>This is analysis!</p>
-        <button onclick="ChangePageTo('home')">home</button>
+        <button onclick="changePageTo('home')">home</button>
     </div>
 
     <!-- Budgets Page -->
     <div id=budgets>
         <p>This is budgets!</p>
-        <button onclick="ChangePageTo('home')">home</button>
+        <button onclick="changePageTo('home')">home</button>
     </div>
 
     <!-- History Page -->
     <div id=history>
         <p>This is history!</p>
-        <button onclick="ChangePageTo('home')">home</button>
+        <button onclick="changePageTo('home')">home</button>
     </div>
 
     <!-- Settings Page -->
     <div id=settings>
         <p>This is settings!</p>
-        <button onclick="ChangePageTo('home')">home</button>
+        <button onclick="changePageTo('home')">home</button>
     </div>
 </div>
