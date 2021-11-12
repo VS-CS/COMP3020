@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -40,10 +42,18 @@
 .tb-child {
     height: 100%;
     margin-left: 1%;
+    position: relative;
 }
 
 .body {
     height: var(--body-size);
+    display: flex;
+    flex-direction: column;
+}
+
+.tb-body{
+    height: 100%;
+    background-color: #cdb9a5;
     display: flex;
     flex-direction: column;
 }
@@ -112,8 +122,51 @@
     bottom: 20%;
 }
 
-/*------------------ Font Link ------------------*/
+ 
+.text-block {
+    position: absolute;
+    bottom: 100px;
+    right: 50px;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
-    /*------------------ Colors ------------------*/
+/*-----------------------Detective Dialogue-----------------------------*/
+.box{
+	border-style: outset;
+	border-color: #5e361d;
+ 	background: rgba(94, 54, 29, 0.5);
+ 	display: inline-block;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: auto;
+    margin-bottom: 2%;
+}
 
-    /*------------------ Font ------------------*/
+.typing{
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    width: 100%;
+    animation: typing 2s steps(44), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+	font-family: 'Special Elite', cursive;
+	font-size: 20px;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
+    
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
+}
+
+
+
