@@ -5,43 +5,308 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <!------------------ import jquery ------------------> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+
         <!------------------ Local Files ------------------> 
         <link rel="stylesheet" href="assets/css/styles.css">
-        <script src="assets/javascript/main.js"></script>
+        <script src="assets/javascript/main.js"></script> 
     </head>
-    <body>
+    <body onload="changePageTo('home')">
         <div class="screen_aspect_ratio">
-            <div id="main" style="height: 100%;">
-                <p>This is the START!</p>
-                <button onclick="ChangePageTo('home')">home</button>
+            <div id="main" class="main">
+                
             </div>
         </div>
     </body>
 </html>
 
 
-
 <!-- Pages -->
 <div hidden>
 
     <!-- Home Page -->
-    <div id=home>
+    <div id=home onload="insertTopBarContent()">
         <div class="top-bar">
-            <img src="assets/images/Balance.svg" class="image img_Balance">
-            <img src="assets/images/History.svg" class="image img_History">
-            <img src="assets/images/Settings.svg" class="image img_Settings">
+            <div class="tb-child">
+                <img src="assets/images/Balance.svg" class="image img-balance">
+                <div class="text-block">
+                    <p id="total_balance"></p>
+                </div>
+            </div>
+            <div class="tb-child float-down" style="margin-left: auto;">
+                <img src="assets/images/History.svg" class="image img-history" onclick="changePageTo('history')">
+            </div>
+            <div class="tb-child float-down">
+                <img src="assets/images/Settings.svg" class="image img-settings" onclick="changePageTo('settings')">
+            </div>
         </div>
         <div class="body">
-            <p>This is home!</p>
-            <button onclick="ChangePageTo('add_income')">add_income</button>
-            <img src="assets/images/Detective.svg" class="image img_Detective">
-            
+            <div class="box">
+                <div class="typing">This is home!</div>
+            </div>
+            <div class="dialog-options-wrapper">
+                <div onclick="changePageTo('add_income')" class="dialog-options">add_income</div>
+                <div onclick="changePageTo('add_expense')" class="dialog-options">add_expense</div>
+                <div onclick="changePageTo('analysis')" class="dialog-options">analysis</div>
+                <div onclick="changePageTo('budgets')" class="dialog-options">budgets</div>
+            </div>
         </div>
     </div>
 
     <!-- Add Income Page -->
     <div id=add_income>
-        <p>This is add_income!</p>
-        <button onclick="ChangePageTo('home')">home</button>
+        <div class="top-bar">
+            <div class="tb-child">
+                <img src="assets/images/Balance.svg" class="image img-balance">
+                <div class="text-block">
+                    <p id="total_balance"></p>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="box">
+                <div class="typing">Sure thing. Fill in this form.</div>
+            </div>
+            <form>
+                <h1>Add Income</h1>
+                <label for="item">Description:</label>
+                <input type="text" id="item" placeholder="Enter Item description">
+                <br>
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" placeholder="Enter Item Amount">
+                <br>
+                <label for="date">Date:</label>
+                <input type="date" id="date">
+                <br>
+            </form>
+            
+            <div class="dialog-options-wrapper">
+                <div onclick="changePageTo('home')" class="dialog-options">I didn't mean that.</div>
+                <div class="dialog-options">
+                    <div onclick="addIncome()" class="add_income">Here you go.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Expense Page -->
+    <div id=add_expense>
+        <div class="top-bar">
+            <div class="tb-child">
+                <img src="assets/images/Balance.svg" class="image img-balance">
+                <div class="text-block">
+                    <p id="total_balance"></p>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="box">
+                <div class="typing">Sure thing. Fill in this form.</div>
+            </div>
+            <form>
+                <h1>Add Expense</h1>
+                <label for="item">Description:</label>
+                <input type="text" id="item" placeholder="Enter Item description">
+                <br>
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" placeholder="Enter Item Amount">
+                <br>
+                <label for="date">Date:</label>
+                <input type="date" id="date">
+                <br>
+                <label for="budget">Budget:</label>
+                    <select id="budget" onclick="generateOptions()">
+                        
+                    </select>
+                <br>
+            </form>
+            
+            <div class="dialog-options-wrapper">
+                <div onclick="changePageTo('home')" class="dialog-options">I didn't mean that.</div>
+                <div class="dialog-options">
+                    <div onclick="addExpense()" class="add_expense">Here you go.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analysis Page -->
+    <div id=analysis>
+        <p>This is analysis!</p>
+        <button onclick="changePageTo('home')">home</button>
+    </div>
+
+    <!-- Budgets Page -->
+    <div id=budgets>
+        <div class="top-bar">
+            <div class="tb-child">
+                <img src="assets/images/Balance.svg" class="image img-balance">
+                <div class="text-block">
+                    <p id="total_balance"></p>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="box">
+                <div class="typing">What would you like to do with your budgets?</div>
+            </div>            
+            <div class="dialog-options-wrapper">
+                <div onclick="changePageTo('home')" class="dialog-options">I didn't mean that.</div>
+                <div onclick="changePageTo('modify-budget')" class="dialog-options">I want to modify a budget.</div>
+                <div onclick="changePageTo('remove-budget')" class="dialog-options">I want to remove a budget.</div>
+                <div onclick="changePageTo('add-budget')" class="dialog-options">I want to add a new budget.</div>                
+            </div>
+        </div>
+    </div>
+
+    <!--Budget Sub Pages-->
+    <div id=add-budget>
+        <div class="top-bar">
+            <div class="tb-child">
+                <img src="assets/images/Balance.svg" class="image img-balance">
+                <div class="text-block">
+                    <p id="total_balance"></p>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="box">
+                <div class="typing">Sure thing. Fill in this form.</div>
+            </div>
+            <form>
+                <h1>New Budget</h1>
+                <label for="budget_name">Budget Name:</label>
+                <input type="text" id="budget_name" placeholder="Enter budget name">
+                <br>
+                <label for="budget_amount">Amount:</label>
+                <input type="number" id="budget_amount" placeholder="Enter budget amount">
+                <br>
+            </form>
+            
+            <div class="dialog-options-wrapper">
+                <div onclick="changePageTo('budgets')" class="dialog-options">I didn't mean that.</div>
+                <div class="dialog-options">
+                    <div onclick="addBudget()" class="add_budget">Here you go.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id=remove-budget>
+        <div class="top-bar">
+            <div class="tb-child">
+                <img src="assets/images/Balance.svg" class="image img-balance">
+                <div class="text-block">
+                    <p id="total_balance"></p>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="box">
+                <div class="typing">Which budget would you like to delete?</div>
+            </div>
+            <form>
+                <h1>New Budget</h1>
+                <label for="item">Description:</label>
+                <input type="text" id="item" placeholder="Enter Item description">
+                <br>
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" placeholder="Enter Item Amount">
+                <br>
+                <label for="date">Date:</label>
+                <input type="date" id="date">
+                <br>
+            </form>
+            
+            <div class="dialog-options-wrapper">
+                <div onclick="changePageTo('budgets')" class="dialog-options">I didn't mean that.</div>
+                <div class="dialog-options">
+                    <div onclick="addIncome()" class="add_income">Here you go.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id=modify-budget>
+        <div class="top-bar">
+            <div class="tb-child">
+                <img src="assets/images/Balance.svg" class="image img-balance">
+                <div class="text-block">
+                    <p id="total_balance"></p>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="box">
+                <div class="typing">Which budget would you like to modify?</div>
+            </div>
+            <form>
+                <h1>New Budget</h1>
+                <label for="item">Description:</label>
+                <input type="text" id="item" placeholder="Enter Item description">
+                <br>
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" placeholder="Enter Item Amount">
+                <br>
+                <label for="date">Date:</label>
+                <input type="date" id="date">
+                <br>
+            </form>
+            
+            <div class="dialog-options-wrapper">
+                <div onclick="changePageTo('budgets')" class="dialog-options">I didn't mean that.</div>
+                <div class="dialog-options">
+                    <div onclick="addIncome()" class="add_income">Here you go.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Page -->
+    <div id=history>
+        <div class="tb-body">
+            <button onclick="changePageTo('home')">home</button>
+            <button onclick="changePageTo('income-history');displayTable(user_income);">income</button>
+            <button onclick="changePageTo('expense-history');displayTable(user_expense);">expense</button>
+        </div>
+    </div>
+
+    <!--History Sub Pages-->
+    <div id=income-history>
+        <div class="tb-body">
+            <button onclick="changePageTo('home')">home</button>
+            <button onclick="changePageTo('expense-history');displayTable(user_expense);">expense</button>
+            <table>
+                <tr>
+                    <th>item</th>
+                    <th>amount</th>
+                    <th>date</th>
+                </tr>
+                <!-- table contents loaded by function displayTable()-->
+            </table>
+        </div>
+    </div>
+
+    <div id=expense-history>
+        <div class="tb-body">
+            <button onclick="changePageTo('home')">home</button>
+            <button onclick="changePageTo('income-history');displayTable(user_income);">income</button>
+            <table>
+                <tr>
+                    <th>item</th>
+                    <th>amount</th>
+                    <th>date</th>
+                    <th>budget</th>
+                </tr>
+                <!-- table contents loaded by function displayTable()-->
+            </table>
+        </div>
+    </div>
+
+    <!-- Settings Page -->
+    <div id=settings>
+        <p>This is settings!</p>
+        <button onclick="changePageTo('home')">home</button>
     </div>
 </div>

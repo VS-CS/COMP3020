@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
 * {
     margin: 0;
     padding: 0;
+}
+
+:root {
+    --top-bar-size: 20%;
+    --body-size: 80%;
 }
 
 .screen_aspect_ratio {
@@ -16,44 +23,150 @@
     left:0;right:0;
 }
 
+.main {
+    height: 100%;
+    background-image: url('Detective.svg'), linear-gradient(rgb(96,78,66), rgb(94,76,64), rgb(96,78,66));
+    background-repeat: no-repeat;
+    background-size: 90%, 100% 40.2%;
+    background-position-x: center;
+    background-position-y: 30%, 100%;
+    filter: drop-shadow(-0.5vh 0.6vh 0.3vh rgba(0, 0, 0, 0.39));
+}
+
 .top-bar {
-    height: 10%;
+    height: var(--top-bar-size);
+    width: 100%;
+    display: flex;
+}
+
+.tb-child {
+    height: 100%;
+    margin-left: 1%;
+    position: relative;
 }
 
 .body {
-    height: 90%;
+    height: var(--body-size);
+    display: flex;
+    flex-direction: column;
+}
+
+.tb-body{
+    height: 100%;
+    background-color: #cdb9a5;
+    display: flex;
+    flex-direction: column;
+}
+
+.dialog-box {
+    border-style: solid;
+    border-radius: 1vh;
+    border-color: black;
+    border-width: thin;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: auto;
+    margin-bottom: 2%;
+}
+
+.dialog-options-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    bottom: 0;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    margin-bottom: 8%;
+}
+
+.dialog-options {
+    position:relative;
+    display: block;
+    background-color: rgba(94, 54, 29, 0.5);
+    border-style: outset;
+    border-color: #5e361d;
+    margin-top: 2%;
+    height: 20%;
+    font-size: inherit;
 }
 
 .image {
-    position: absolute;
-    height: auto;
+    height: 100%;
+    object-fit: scale-down;
     display: block;
 }
 
-.img_Detective {
+.img-balance {
+    height: 100%;
+    position: relative;
+    bottom: 20%;
+}
+
+.img-history {
+    height: 60%;
+    position: relative;
+    bottom: 20%;
+}
+
+.float-down {
+    transition: 0.5s;
+}
+
+.float-down:hover {
+    transform: translateY(20%)
+}
+
+.img-settings {
+    height: 60%;
+    position: relative;
+    bottom: 20%;
+}
+
+ 
+.text-block {
+    position: absolute;
+    bottom: 100px;
+    right: 50px;
+    font-size: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/*-----------------------Detective Dialogue-----------------------------*/
+.box{
+	border-style: outset;
+	border-color: #5e361d;
+ 	background: rgba(94, 54, 29, 0.5);
+ 	display: inline-block;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: auto;
+    margin-bottom: 2%;
+}
+
+.typing{
+    padding-top: 2.5%;
+    padding-bottom: 2.5%;
+    width: 100%;
+    animation: typing 2s steps(44), blink .5s step-end infinite alternate;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid;
+	font-family: 'Special Elite', cursive;
+	font-size: 20px;
+}
+
+@keyframes typing {
+  from {
+    width: 0
+  }
+}
     
+@keyframes blink {
+  50% {
+    border-color: transparent
+  }
 }
 
-.img_Balance {
-    max-height: 10vh;
-    top: 0;
-    left: 0;
-}
 
-.img_History {
-    max-height: 10vh;
-    top: 0;
-    left: 0;
-}
 
-.img_Settings {
-    max-height: 10vh;
-    top: 0;
-    left: 0;
-}
-
-/*------------------ Font Link ------------------*/
-
-    /*------------------ Colors ------------------*/
-
-    /*------------------ Font ------------------*/
