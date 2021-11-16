@@ -47,8 +47,11 @@
 
 .body {
     height: var(--body-size);
+    width: 90%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-left: 5%;
 }
 
 .tb-body{
@@ -56,6 +59,31 @@
     background-color: #cdb9a5;
     display: flex;
     flex-direction: column;
+}
+
+.budget-list {
+    height:50%;
+    width: 80%;
+    overflow-y: auto;
+    background-image: url('Form.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: 0;    
+}
+
+.budget-item-wrapper{
+    margin-top: 2%;
+    margin-left: 5%;
+    display: flex;
+    align-content: stretch;
+    height: 20%;
+    width: 90%;
+    justify-content: space-between;
+    vertical-align: middle;
+    border-bottom: 0.3vh double black;
+    align-items: center;
+    font-size: 100%;
 }
 
 .dialog-box {
@@ -73,6 +101,7 @@
     display: flex;
     flex-direction: column-reverse;
     bottom: 0;
+    width: 100%;
     margin-left: 5%;
     margin-right: 5%;
     margin-top: 2%;
@@ -142,6 +171,7 @@
     margin-right: 5%;
     margin-top: auto;
     margin-bottom: 2%;
+    width: 100%;
 }
 
 .typing{
@@ -150,7 +180,7 @@
     width: 100%;
     animation: typing 2s steps(44), blink .5s step-end infinite alternate;
     white-space: nowrap;
-    overflow: hidden;
+    overflow-y: auto;
     border-right: 3px solid;
 	font-family: 'Special Elite', cursive;
 	font-size: 20px;

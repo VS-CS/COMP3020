@@ -3,6 +3,85 @@ let user_expense = []; //2D array: each element is an array [item, amount, date,
 let user_budget = new Map(); //key,value pair where (key = budget name), (value = budget amount)
 let total_balance = 0; //total balance of user
 
+class Budget {
+    constructor(name, amount, occurs){
+        this.name = name;
+        this.amount = amount;
+        this.occurs = occurs;
+        this.amount_used = 0;
+    }
+
+    amountLeft(){
+        return this.amount-this.amount_used;
+    }
+
+    toString(){
+        return this.name + ' | Amount: $' + this.amount + ', Amount Left: $' + this.amountLeft() + ', Reoccurs every ' + this.occurs + ' day(s)';
+    }
+}
+
+class Budgets {
+    constructor(){
+        this.budgets = [];
+
+        //<TEMP>
+        for(let i = 0; i < 5; i++){this.newBudget('Test_' + i, i*i, 0);}
+        //<TEMP>
+    }
+
+    newBudget(name, amount, occurs){
+        this.budgets.push(new Budget(name, amount, occurs));
+        this.updateBudgetList();
+    }
+
+    removeBudgetAt(index_pos){
+        this.budgets.splice(index_pos, 1);
+        this.updateBudgetList();
+    }
+
+    printRemoveBudgetList(){ //<OLD> WILL REMOVE AT SOME POINT
+        document.getElementById('remove-budget-list').innerHTML = "";
+        this.budgets.forEach((budget, index) => {
+            let li = document.createElement("li");
+            li.innerText = budget;
+            li.setAttribute('onClick', 'all_budgets.removeBudgetAt(' + index + ')'); //<TEMP>
+            document.getElementById('remove-budget-list').appendChild(li);
+        });
+    }
+
+    printBudgetList(parent_class, special_function){
+        let parents = document.getElementsByClassName(parent_class);
+        for(let i = 0; i < parents.length; i++){
+            parents[i].innerText = "";
+            this.budgets.forEach((budget, index) => {
+                let item_wrapper = document.createElement("div");
+                item_wrapper.setAttribute('class', 'budget-item-wrapper');
+                let n = document.createElement("div");
+                n.innerHTML = budget.name;
+                item_wrapper.appendChild(n);
+                let a = document.createElement("div");
+                a.innerHTML = "$" + budget.amount;
+                item_wrapper.appendChild(a);
+                if(special_function == 'modify'){
+                    let m = document.createElement("img");
+                    m.setAttribute('src','assets/images/Settings.svg');
+                    m.setAttribute('class', 'image')
+                    item_wrapper.appendChild(m);
+                }
+                parents[i].appendChild(item_wrapper);
+            });
+        }
+    }
+
+    updateBudgetList(){
+        this.printBudgetList('budget-list', 'modify');
+        //this.printRemoveBudgetList();
+        //this.printModifyBudgetList();
+    }
+}
+
+let all_budgets = new Budgets();
+
 /*  
     This returns the text value of an input tag with the element selector.
     e.g. <input type="text" id="item" placeholder="Enter Item description">
@@ -98,7 +177,8 @@ function generateOptions(){
 function addBudget(){
     let name = getVal("#budget_name");
     let amount = parseInt(document.getElementById('budget_amount').value);
-    user_budget.set(name,amount);
+    //user_budget.set(name,amount);
+    all_budgets.newBudget(name, amount, 0);
 
     //go back to home page
     changePageTo('home');
@@ -113,3 +193,10 @@ function changePageTo(pageID){
     document.getElementById("total_balance").innerHTML = total_balance; // I just didn't know where to put this ;-; -dani
 }
 
+
+function addTopBar(){
+    let locations = document.getElementsByClassName('top-bar');
+    for(let i = 0; i<locations.length; i++){
+        locations[i].innerHTML = document.getElementById('top-bar').innerHTML;
+    }
+}
