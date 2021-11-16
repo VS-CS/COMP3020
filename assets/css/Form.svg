@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!-- Created with Vectornator for iOS (http://vectornator.io/) --><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="100%" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100%" xmlns:vectornator="http://vectornator.io" version="1.1" viewBox="0 0 600 600">
+<metadata>
+<vectornator:setting key="DimensionsVisible" value="1"/>
+<vectornator:setting key="PencilOnly" value="0"/>
+<vectornator:setting key="SnapToPoints" value="0"/>
+<vectornator:setting key="GuidesVisible" value="1"/>
+<vectornator:setting key="CMYKEnabledKey" value="0"/>
+<vectornator:setting key="RulersVisible" value="1"/>
+<vectornator:setting key="OutlineMode" value="0"/>
+<vectornator:setting key="SnapToEdges" value="0"/>
+<vectornator:setting key="DisplayWhiteBackground" value="0"/>
+<vectornator:setting key="doHistoryDisabled" value="0"/>
+<vectornator:setting key="SnapToGuides" value="1"/>
+<vectornator:setting key="TimeLapseWatermarkDisabled" value="0"/>
+<vectornator:setting key="Units" value="Pixels"/>
+<vectornator:setting key="SnapToGrid" value="0"/>
+<vectornator:setting key="IsolateActiveLayer" value="0"/>
+<vectornator:setting key="DynamicGuides" value="0"/>
+</metadata>
+<defs/>
+<g id="레이어 1" vectornator:layerName="레이어 1">
+<path vectornator:shadowColor="#000000" vectornator:shadowOpacity="0.333" vectornator:shadowRadius="10" d="M174.197+66.0642L174.197+21.4746L477.392+21.4746L477.392+555.944L119.564+555.944L122.07+65.7663L174.197+66.0642Z" vectornator:shadowOffset="10" fill="#a99784" opacity="1" vectornator:shadowAngle="1.5708"/>
+<path vectornator:shadowColor="#000000" vectornator:shadowOpacity="0.333" vectornator:shadowRadius="10" d="M174.256+21.4303C174.184+21.2864+175.455+67.2599+175.455+67.2599L122.054+65.7855L174.256+21.4303Z" vectornator:shadowOffset="10" fill="#cdb9a5" opacity="1" vectornator:shadowAngle="1.5708"/>
+</g>
+</svg>
