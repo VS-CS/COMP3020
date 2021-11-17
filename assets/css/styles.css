@@ -3,11 +3,15 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Special Elite', cursive;
+    font-weight: bold;
 }
 
 :root {
     --top-bar-size: 20%;
     --body-size: 80%;
+    --dialog-background-colour: rgba(78, 44, 22, 0.75);
+
 }
 
 .screen_aspect_ratio {
@@ -61,10 +65,9 @@
     flex-direction: column;
 }
 
-.budget-list {
+.budget-form-wrapper{
     height:50%;
     width: 80%;
-    overflow-y: auto;
     background-image: url('Form.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -72,8 +75,20 @@
     background-position-y: 0;    
 }
 
+.budget-form{
+    margin-top: 15%;
+    height: 80%;
+    width: 90%;
+    margin-left: 4%;
+    overflow-y: auto;
+    border-style: solid;
+    border-color: #b5a28e;
+    border-radius: 1vh;
+}
+
 .budget-item-wrapper{
-    margin-top: 2%;
+    margin-top: 1.5%;
+    margin-bottom: 1%;
     margin-left: 5%;
     display: flex;
     align-content: stretch;
@@ -81,7 +96,7 @@
     width: 90%;
     justify-content: space-between;
     vertical-align: middle;
-    border-bottom: 0.3vh double black;
+    border-bottom: 0.3vh double #b5a28e;
     align-items: center;
     font-size: 100%;
 }
@@ -111,11 +126,11 @@
 .dialog-options {
     position:relative;
     display: block;
-    background-color: rgba(94, 54, 29, 0.5);
+    background-color: var(--dialog-background-colour);
     border-style: outset;
     border-color: #5e361d;
     margin-top: 2%;
-    height: 20%;
+    /*height: 20%;*/
     font-size: inherit;
 }
 
@@ -165,7 +180,7 @@
 .box{
 	border-style: outset;
 	border-color: #5e361d;
- 	background: rgba(94, 54, 29, 0.5);
+ 	background: var(--dialog-background-colour);
  	display: inline-block;
     margin-left: 5%;
     margin-right: 5%;

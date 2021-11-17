@@ -5,9 +5,16 @@ let total_balance = 0; //total balance of user
 
 class Budget {
     constructor(name, amount, occurs){
-        this.name = name;
-        this.amount = amount;
-        this.occurs = occurs;
+        this.name = "(no-name)";
+        this.amount = 0;
+        this.occurs = 0;
+
+        if(name)
+            this.name = name;
+        if(amount)
+            this.amount = amount;
+        if(occurs)
+            this.occurs = occurs;
         this.amount_used = 0;
     }
 
@@ -39,17 +46,7 @@ class Budgets {
         this.updateBudgetList();
     }
 
-    printRemoveBudgetList(){ //<OLD> WILL REMOVE AT SOME POINT
-        document.getElementById('remove-budget-list').innerHTML = "";
-        this.budgets.forEach((budget, index) => {
-            let li = document.createElement("li");
-            li.innerText = budget;
-            li.setAttribute('onClick', 'all_budgets.removeBudgetAt(' + index + ')'); //<TEMP>
-            document.getElementById('remove-budget-list').appendChild(li);
-        });
-    }
-
-    printBudgetList(parent_class, special_function){
+    printBudgetList(parent_class){
         let parents = document.getElementsByClassName(parent_class);
         for(let i = 0; i < parents.length; i++){
             parents[i].innerText = "";
@@ -62,10 +59,17 @@ class Budgets {
                 let a = document.createElement("div");
                 a.innerHTML = "$" + budget.amount;
                 item_wrapper.appendChild(a);
-                if(special_function == 'modify'){
+                if(parent_class == 'budget-list-modify'){
                     let m = document.createElement("img");
                     m.setAttribute('src','assets/images/Settings.svg');
-                    m.setAttribute('class', 'image')
+                    m.setAttribute('class', 'image');
+                    m.setAttribute('onClick', 'all_budgets.loadModifyBudgetPage(' + index + '); changePageTo("modify-budget")');
+                    item_wrapper.appendChild(m);
+                }else if(parent_class == 'budget-list-remove'){
+                    let m = document.createElement("img");
+                    m.setAttribute('src','assets/images/TrashCan.png');
+                    m.setAttribute('class', 'image');
+                    m.setAttribute('onClick', 'all_budgets.removeBudgetAt(' + index + ')');
                     item_wrapper.appendChild(m);
                 }
                 parents[i].appendChild(item_wrapper);
@@ -74,13 +78,29 @@ class Budgets {
     }
 
     updateBudgetList(){
-        this.printBudgetList('budget-list', 'modify');
+        this.printBudgetList('budget-list-modify');
+        this.printBudgetList('budget-list-remove');
         //this.printRemoveBudgetList();
         //this.printModifyBudgetList();
+    }
+
+    loadModifyBudgetPage(index_pos){
+        cur_index_pos = index_pos;
+        document.getElementById("mod-budget-name").setAttribute('value', this.budgets[index_pos].name);
+        document.getElementById("mod-budget-amount").setAttribute('value', this.budgets[index_pos].amount);
+        document.getElementById("mod-budget-occurs").setAttribute('value', this.budgets[index_pos].occurs);
+    }
+
+    updateModifiedBudgetItem(index_pos){
+        this.budgets[index_pos].name = document.getElementById("mod-budget-name").value;
+        this.budgets[index_pos].amount = document.getElementById("mod-budget-amount").value;
+        this.budgets[index_pos].occurs = document.getElementById("mod-budget-occurs").value;
+        this.updateBudgetList();
     }
 }
 
 let all_budgets = new Budgets();
+let cur_index_pos = 0;
 
 /*  
     This returns the text value of an input tag with the element selector.
@@ -177,8 +197,8 @@ function generateOptions(){
 function addBudget(){
     let name = getVal("#budget_name");
     let amount = parseInt(document.getElementById('budget_amount').value);
-    //user_budget.set(name,amount);
-    all_budgets.newBudget(name, amount, 0);
+    let occurs = parseInt(document.getElementById('budget_occurs').value);
+    all_budgets.newBudget(name, amount, occurs);
 
     //go back to home page
     changePageTo('home');
@@ -190,7 +210,7 @@ function addBudget(){
 */
 function changePageTo(pageID){
     document.getElementById('main').innerHTML = document.getElementById(pageID).innerHTML;
-    document.getElementById("total_balance").innerHTML = total_balance; // I just didn't know where to put this ;-; -dani
+    //document.getElementById("total_balance").innerHTML = total_balance; // I just didn't know where to put this ;-; -dani
 }
 
 
@@ -198,5 +218,12 @@ function addTopBar(){
     let locations = document.getElementsByClassName('top-bar');
     for(let i = 0; i<locations.length; i++){
         locations[i].innerHTML = document.getElementById('top-bar').innerHTML;
+    }
+}
+
+function updateTotalBalance(){
+    let locations = document.getElementsByClassName('total-balance');
+    for(let i = 0; i<locations.length; i++){
+        locations[i].innerHTML = total_balance;
     }
 }
