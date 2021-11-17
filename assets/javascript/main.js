@@ -61,13 +61,13 @@ class Budgets {
                 item_wrapper.appendChild(a);
                 if(parent_class == 'budget-list-modify'){
                     let m = document.createElement("img");
-                    m.setAttribute('src','assets/images/Settings.svg');
+                    m.setAttribute('src','assets/images/Edit.svg');
                     m.setAttribute('class', 'image');
                     m.setAttribute('onClick', 'all_budgets.loadModifyBudgetPage(' + index + '); changePageTo("modify-budget")');
                     item_wrapper.appendChild(m);
                 }else if(parent_class == 'budget-list-remove'){
                     let m = document.createElement("img");
-                    m.setAttribute('src','assets/images/TrashCan.png');
+                    m.setAttribute('src','assets/images/TrashCan.svg');
                     m.setAttribute('class', 'image');
                     m.setAttribute('onClick', 'all_budgets.removeBudgetAt(' + index + ')');
                     item_wrapper.appendChild(m);
