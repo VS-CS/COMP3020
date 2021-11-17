@@ -34,7 +34,7 @@
             </div>
             <div class="dialog-options-wrapper">
                 <div onclick="changePageTo('add_income')" class="dialog-options">add_income</div>
-                <div onclick="changePageTo('add_expense')" class="dialog-options">add_expense</div>
+                <div onclick="generateOptions(); changePageTo('add_expense')" class="dialog-options">add_expense</div>
                 <div onclick="changePageTo('analysis')" class="dialog-options">analysis</div>
                 <div onclick="changePageTo('budgets')" class="dialog-options">budgets</div>
             </div>
@@ -91,7 +91,7 @@
                     <input type="date" id="date">
                     <br>
                     <label for="budget">Budget:</label>
-                        <select id="budget" onclick="generateOptions()">
+                        <select id="budget">
                             
                         </select>
                     <br>
