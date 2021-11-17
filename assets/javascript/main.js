@@ -80,8 +80,6 @@ class Budgets {
     updateBudgetList(){
         this.printBudgetList('budget-list-modify');
         this.printBudgetList('budget-list-remove');
-        //this.printRemoveBudgetList();
-        //this.printModifyBudgetList();
     }
 
     loadModifyBudgetPage(index_pos){
@@ -122,11 +120,19 @@ function addIncome(){
     let amount = parseInt(document.getElementById('amount').value);
     let date = document.getElementById('date').value;
 
+    if(!item)
+        item = "(no-name)";
+    if(!amount)
+        amount = 0;
+    if(!date)
+        date = "(no-date)";
+
     total_balance += amount;
     user_income.push([item, amount, date]);
     
     //go back to home page
     changePageTo('home'); 
+    updateTotalBalance();
 }
 
 /*
@@ -139,13 +145,29 @@ function addExpense(){
     let item = getVal("#item");
     let amount = parseInt(document.getElementById('amount').value);
     let date = document.getElementById('date').value;
-    let budget = document.getElementById('budget').value;
+    //let budget = document.getElementById('budget').value;
+    let select_index = document.getElementById('budget').selectedIndex;
+    let budget = "(no-budget)";
+
+    if(!item)
+        item = "(no-name)";
+    if(!amount)
+        amount = 0;
+    if(!date)
+        date = "(no-date)";
+
+    if(select_index){
+        all_budgets.budgets[select_index].amount_used += amount;
+        budget = all_budgets.budgets[select_index].name;
+    }
 
     total_balance -= amount;
     user_expense.push([item, amount, date, budget]);
-    
+    updateTotalBalance();
+
     //go back to home page
     changePageTo('home'); 
+    
 }
 
 /*
@@ -180,13 +202,21 @@ function generateTable(table, data) {
 */
 function generateOptions(){
     let select = document.getElementById("budget");
-    for(const [key, value] of user_budget){
-        var option = key;
+    //for(const [key, value] of user_budget){
+    select.innerHTML = "";
+    var d = document.createElement("option");
+    d.setAttribute('selected', 'sekected');
+    d.innerText = "(budgets)";
+    select.add(d);
+    all_budgets.budgets.forEach(budget => {
+        //var option = key;
         var el = document.createElement("option");
-        el.text = option;
-        el.value = option;
+        //el.text = option;
+        //el.value = option;
+        el.text = budget.name;
+        el.value = budget.ammount;
         select.add(el);
-    }
+    });
 }
 
 /*
