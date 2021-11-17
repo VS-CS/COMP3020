@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="assets/css/styles.css">
         <script src="assets/javascript/main.js"></script> 
     </head>
-    <body onload="changePageTo('home'); addTopBar()">
+    <body onload="changePageTo('home'); addTopBar(); updateTotalBalance()">
         <div class="screen_aspect_ratio">
             <div id="main" class="main">
                 
@@ -48,19 +48,20 @@
             <div class="box">
                 <div class="typing">Sure thing. Fill in this form.</div>
             </div>
-            <form>
-                <h1>Add Income</h1>
-                <label for="item">Description:</label>
-                <input type="text" id="item" placeholder="Enter Item description">
-                <br>
-                <label for="amount">Amount:</label>
-                <input type="number" id="amount" placeholder="Enter Item Amount">
-                <br>
-                <label for="date">Date:</label>
-                <input type="date" id="date">
-                <br>
-            </form>
-            
+            <div class="budget-form-wrapper">
+                <form class="budget-form">
+                    <h1>Add Income</h1>
+                    <label for="item">Description:</label>
+                    <input type="text" id="item" placeholder="Enter Item description">
+                    <br>
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" placeholder="Enter Item Amount">
+                    <br>
+                    <label for="date">Date:</label>
+                    <input type="date" id="date">
+                    <br>
+                </form>
+            </div>
             <div class="dialog-options-wrapper">
                 <div onclick="changePageTo('home')" class="dialog-options">I didn't mean that.</div>
                 <div class="dialog-options">
@@ -77,24 +78,25 @@
             <div class="box">
                 <div class="typing">Sure thing. Fill in this form.</div>
             </div>
-            <form>
-                <h1>Add Expense</h1>
-                <label for="item">Description:</label>
-                <input type="text" id="item" placeholder="Enter Item description">
-                <br>
-                <label for="amount">Amount:</label>
-                <input type="number" id="amount" placeholder="Enter Item Amount">
-                <br>
-                <label for="date">Date:</label>
-                <input type="date" id="date">
-                <br>
-                <label for="budget">Budget:</label>
-                    <select id="budget" onclick="generateOptions()">
-                        
-                    </select>
-                <br>
-            </form>
-            
+            <div class="budget-form-wrapper">
+                <form class="budget-form">
+                    <h1>Add Expense</h1>
+                    <label for="item">Description:</label>
+                    <input type="text" id="item" placeholder="Enter Item description">
+                    <br>
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" placeholder="Enter Item Amount">
+                    <br>
+                    <label for="date">Date:</label>
+                    <input type="date" id="date">
+                    <br>
+                    <label for="budget">Budget:</label>
+                        <select id="budget" onclick="generateOptions()">
+                            
+                        </select>
+                    <br>
+                </form>
+            </div>
             <div class="dialog-options-wrapper">
                 <div onclick="changePageTo('home')" class="dialog-options">I didn't mean that.</div>
                 <div class="dialog-options">
@@ -120,7 +122,7 @@
             </div>            
             <div class="dialog-options-wrapper">
                 <div onclick="changePageTo('home')" class="dialog-options">I didn't mean that.</div>
-                <div onclick="changePageTo('modify-budget')" class="dialog-options">I want to modify a budget.</div>
+                <div onclick="changePageTo('modify-budget-list')" class="dialog-options">I want to modify a budget.</div>
                 <div onclick="changePageTo('remove-budget')" class="dialog-options">I want to remove a budget.</div>
                 <div onclick="changePageTo('add-budget')" class="dialog-options">I want to add a new budget.</div>                
             </div>
@@ -134,21 +136,24 @@
             <div class="box">
                 <div class="typing">Sure thing. Fill in this form.</div>
             </div>
-            <form>
-                <h1>New Budget</h1>
-                <label for="budget_name">Budget Name:</label>
-                <input type="text" id="budget_name" placeholder="Enter budget name">
-                <br>
-                <label for="budget_amount">Amount:</label>
-                <input type="number" id="budget_amount" placeholder="Enter budget amount">
-                <br>
-            </form>
-            
+            <div class="budget-form-wrapper">
+                <form class="budget-form">
+                    <h1>New Budget</h1>
+                    <label for="budget_name">Budget Name:</label>
+                    <input type="text" id="budget_name" placeholder="Enter budget name">
+                    <br>
+                    <label for="budget_amount">Amount:</label>
+                    <input type="number" id="budget_amount" placeholder="Enter budget amount">
+                    <br>
+                    <label for="budget_amount">Occurs every _____ Day(s):</label>
+                    <input type="number" id="budget_occurs" placeholder="Enter number of day(s)">
+                    <br>
+                </form>
+            </div>
+
             <div class="dialog-options-wrapper">
                 <div onclick="changePageTo('budgets')" class="dialog-options">I didn't mean that.</div>
-                <div class="dialog-options">
-                    <div onclick="addBudget()" class="add_budget">Here you go.</div>
-                </div>
+                <div onclick="addBudget()" class="add_budget dialog-options">Here you go.</div>
             </div>
         </div>
     </div>
@@ -159,12 +164,27 @@
             <div class="box">
                 <div class="typing">Which budget would you like to delete?</div>
             </div>
-            <form>
-                <h1>Budgets</h1>
-                <ul id="remove-budget-list">
-                </ul>
-            </form>
-            
+            <div class="budget-form-wrapper">
+                <div class="budget-form budget-list-remove"></div>
+            </div>
+            <script>all_budgets.printBudgetList('budget-list-remove');</script>
+            <div class="dialog-options-wrapper">
+                <div onclick="changePageTo('budgets'); all_budgets.updateBudgetList()" class="dialog-options">Here you go</div>
+                <div onclick="changePageTo('budgets')" class="dialog-options">I didn't mean that.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id=modify-budget-list>
+        <div class="top-bar"><!-- Gets added on <body> load --></div>
+        <div class="body">
+            <div class="box">
+                <div class="typing">Which budget would you like to modify?</div>
+            </div>
+            <div class="budget-form-wrapper">
+                <div class="budget-form budget-list-modify"></div>
+            </div>
+            <script>all_budgets.printBudgetList('budget-list-modify');</script>
             <div class="dialog-options-wrapper">
                 <div onclick="changePageTo('budgets'); all_budgets.updateBudgetList()" class="dialog-options">Here you go</div>
                 <div onclick="changePageTo('budgets')" class="dialog-options">I didn't mean that.</div>
@@ -176,16 +196,25 @@
         <div class="top-bar"><!-- Gets added on <body> load --></div>
         <div class="body">
             <div class="box">
-                <div class="typing">Which budget would you like to modify?</div>
+                <div class="typing">Just fill out the blanks...</div>
             </div>
-            <div class="budget-list">
+            <div class="budget-form-wrapper">
+                <form class="budget-form">
+                    <h1>Modify Budget</h1>
+                    <label for="budget_name">Budget Name:</label>
+                    <input type="text" id="mod-budget-name" placeholder="Enter budget name">
+                    <br>
+                    <label for="budget_amount">Amount:</label>
+                    <input type="number" id="mod-budget-amount" placeholder="Enter budget amount">
+                    <br>
+                    <label for="budget_amount">Occurs every _____ Day(s):</label>
+                    <input type="number" id="mod-budget-occurs" placeholder="Enter number of day(s)">
+                    <br>
+                </form>
             </div>
-            <script>
-                all_budgets.printBudgetList('budget-list', 'modify');
-            </script>
             <div class="dialog-options-wrapper">
-                <div onclick="changePageTo('budgets'); all_budgets.updateBudgetList()" class="dialog-options">Here you go</div>
-                <div onclick="changePageTo('budgets')" class="dialog-options">I didn't mean that.</div>
+                <div onclick="all_budgets.updateModifiedBudgetItem(cur_index_pos); all_budgets.updateBudgetList(); changePageTo('budgets')" class="dialog-options">Here you go</div>
+                <div onclick="changePageTo('modify-budget-list')" class="dialog-options">I didn't mean that.</div>
             </div>
         </div>
     </div>
@@ -242,7 +271,7 @@
         <div class="tb-child">
             <img src="assets/images/Balance.svg" class="image img-balance">
             <div class="text-block">
-                <p id="total_balance"></p>
+                <p class="total-balance"></p>
             </div>
         </div>
         <div class="tb-child float-down" style="margin-left: auto;">
