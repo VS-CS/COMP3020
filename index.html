@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="assets/css/styles.css">
         <script src="assets/javascript/main.js"></script> 
     </head>
-    <body onload="changePageTo('home'); addTopBar(); updateTotalBalance()">
+    <body onload="changePageTo('home'); addTopBar(); updateTotalBalance(); updateStatus(0)">
         <div class="screen_aspect_ratio">
             <div id="main" class="main">
                 
@@ -30,13 +30,13 @@
         <div class="top-bar"><!-- Gets added on <body> load --></div>
         <div class="body">
             <div class="box">
-                <div class="typing">This is home!</div>
+                <div class="typing"><!--Added by updateStatus()--></div>
             </div>
             <div class="dialog-options-wrapper">
-                <div onclick="changePageTo('add_income')" class="dialog-options">add_income</div>
-                <div onclick="generateOptions(); changePageTo('add_expense')" class="dialog-options">add_expense</div>
+                <div onclick="changePageTo('add_income'); updateStatus(1)" class="dialog-options">add_income</div>
+                <div onclick="generateOptions(); changePageTo('add_expense'); updateStatus(1)" class="dialog-options">add_expense</div>
                 <div onclick="changePageTo('analysis')" class="dialog-options">analysis</div>
-                <div onclick="changePageTo('budgets')" class="dialog-options">budgets</div>
+                <div onclick="changePageTo('budgets'); updateStatus(4)" class="dialog-options">budgets</div>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
         <div class="top-bar"><!-- Gets added on <body> load --></div>
         <div class="body">
             <div class="box">
-                <div class="typing">Sure thing. Fill in this form.</div>
+                <div class="typing"><!--Added by updateStatus()--></div>
             </div>
             <div class="budget-form-wrapper">
                 <form class="budget-form">
@@ -63,9 +63,9 @@
                 </form>
             </div>
             <div class="dialog-options-wrapper">
-                <div onclick="changePageTo('home')" class="dialog-options">I didn't mean that.</div>
+                <div onclick="changePageTo('home'); updateStatus(2)" class="dialog-options">I didn't mean that.</div>
                 <div class="dialog-options">
-                    <div onclick="addIncome()" class="add_income">Here you go.</div>
+                    <div onclick="addIncome(); updateStatus(3)" class="add_income">Here you go.</div>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
         <div class="top-bar"><!-- Gets added on <body> load --></div>
         <div class="body">
             <div class="box">
-                <div class="typing">Sure thing. Fill in this form.</div>
+                <div class="typing"><!--Added by updateStatus()--></div>
             </div>
             <div class="budget-form-wrapper">
                 <form class="budget-form">
@@ -98,9 +98,9 @@
                 </form>
             </div>
             <div class="dialog-options-wrapper">
-                <div onclick="changePageTo('home')" class="dialog-options">I didn't mean that.</div>
+                <div onclick="changePageTo('home'); updateStatus(2)" class="dialog-options">I didn't mean that.</div>
                 <div class="dialog-options">
-                    <div onclick="addExpense()" class="add_expense">Here you go.</div>
+                    <div onclick="addExpense(); updateStatus(3)" class="add_expense">Here you go.</div>
                 </div>
             </div>
         </div>
@@ -118,13 +118,13 @@
         <div class="top-bar"><!-- Gets added on <body> load --></div>
         <div class="body">
             <div class="box">
-                <div class="typing">What would you like to do with your budgets?</div>
+                <div class="typing"></div>
             </div>            
             <div class="dialog-options-wrapper">
-                <div onclick="changePageTo('home')" class="dialog-options">I didn't mean that.</div>
-                <div onclick="changePageTo('modify-budget-list')" class="dialog-options">I want to modify a budget.</div>
-                <div onclick="changePageTo('remove-budget')" class="dialog-options">I want to remove a budget.</div>
-                <div onclick="changePageTo('add-budget')" class="dialog-options">I want to add a new budget.</div>                
+                <div onclick="changePageTo('home'); updateStatus(2)" class="dialog-options">I didn't mean that.</div>
+                <div onclick="changePageTo('modify-budget-list'); updateStatus(5)" class="dialog-options">I want to modify a budget.</div>
+                <div onclick="changePageTo('remove-budget'); updateStatus(7)" class="dialog-options">I want to remove a budget.</div>
+                <div onclick="changePageTo('add-budget'); updateStatus(1)" class="dialog-options">I want to add a new budget.</div>                
             </div>
         </div>
     </div>
@@ -134,7 +134,7 @@
         <div class="top-bar"><!-- Gets added on <body> load --></div>
         <div class="body">
             <div class="box">
-                <div class="typing">Sure thing. Fill in this form.</div>
+                <div class="typing"><!--Added by updateStatus()--></div>
             </div>
             <div class="budget-form-wrapper">
                 <form class="budget-form">
@@ -152,8 +152,8 @@
             </div>
 
             <div class="dialog-options-wrapper">
-                <div onclick="changePageTo('budgets')" class="dialog-options">I didn't mean that.</div>
-                <div onclick="addBudget()" class="add_budget dialog-options">Here you go.</div>
+                <div onclick="changePageTo('budgets'); updateStatus(2)" class="dialog-options">I didn't mean that.</div>
+                <div onclick="addBudget(); updateStatus(3)" class="add_budget dialog-options">Here you go.</div>
             </div>
         </div>
     </div>
@@ -162,15 +162,15 @@
         <div class="top-bar"><!-- Gets added on <body> load --></div>
         <div class="body">
             <div class="box">
-                <div class="typing">Which budget would you like to delete?</div>
+                <div class="typing"><!--Added by updateStatus()--></div>
             </div>
             <div class="budget-form-wrapper">
                 <div class="budget-form budget-list-remove"></div>
             </div>
             <script>all_budgets.printBudgetList('budget-list-remove');</script>
             <div class="dialog-options-wrapper">
-                <div onclick="changePageTo('budgets'); all_budgets.updateBudgetList()" class="dialog-options">Here you go</div>
-                <div onclick="changePageTo('budgets')" class="dialog-options">I didn't mean that.</div>
+                <div onclick="changePageTo('budgets'); updateStatus(2)" class="dialog-options">I didn't mean that.</div>
+                <div onclick="changePageTo('budgets'); all_budgets.updateBudgetList(); updateStatus(3)" class="dialog-options">Here you go</div>
             </div>
         </div>
     </div>
@@ -179,15 +179,15 @@
         <div class="top-bar"><!-- Gets added on <body> load --></div>
         <div class="body">
             <div class="box">
-                <div class="typing">Which budget would you like to modify?</div>
+                <div class="typing"><!--Added by updateStatus()--></div>
             </div>
             <div class="budget-form-wrapper">
                 <div class="budget-form budget-list-modify"></div>
             </div>
             <script>all_budgets.printBudgetList('budget-list-modify');</script>
             <div class="dialog-options-wrapper">
-                <div onclick="changePageTo('budgets'); all_budgets.updateBudgetList()" class="dialog-options">Here you go</div>
-                <div onclick="changePageTo('budgets')" class="dialog-options">I didn't mean that.</div>
+                <div onclick="changePageTo('budgets'); updateStatus(1)" class="dialog-options">I didn't mean that.</div>
+                <!--div onclick="changePageTo('budgets'); all_budgets.updateBudgetList(); updateStatus(3)" class="dialog-options">Here you go</div-->
             </div>
         </div>
     </div>
@@ -196,7 +196,7 @@
         <div class="top-bar"><!-- Gets added on <body> load --></div>
         <div class="body">
             <div class="box">
-                <div class="typing">Just fill out the blanks...</div>
+                <div class="typing"><!--Added by updateStatus()--></div>
             </div>
             <div class="budget-form-wrapper">
                 <form class="budget-form">
@@ -213,8 +213,8 @@
                 </form>
             </div>
             <div class="dialog-options-wrapper">
-                <div onclick="all_budgets.updateModifiedBudgetItem(cur_index_pos); all_budgets.updateBudgetList(); changePageTo('budgets')" class="dialog-options">Here you go</div>
-                <div onclick="changePageTo('modify-budget-list')" class="dialog-options">I didn't mean that.</div>
+                <div onclick="changePageTo('modify-budget-list'); updateStatus(2)" class="dialog-options">I didn't mean that.</div>
+                <div onclick="all_budgets.updateModifiedBudgetItem(cur_index_pos); all_budgets.updateBudgetList(); updateStatus(3); changePageTo('budgets')" class="dialog-options">Here you go</div>
             </div>
         </div>
     </div>
@@ -262,7 +262,25 @@
 
     <!-- Settings Page -->
     <div id=settings>
-        <p>This is settings!</p>
+        <div class="tb-body">
+            <button onclick="changePageTo('home')">home</button>
+            <div class="dropdown">
+                <select name="currency" id="currency">
+                    <option value="dollar">$</option>
+                    <option value="euro">€</option>
+                    <option value="yuan-yen">¥</option>
+                    <option value="pound">£</option>
+                    <option value="won">₩</option>
+                  </select>
+                  <button onclick="changeCurrency()">apply</button>
+            </div>
+            <button onclick="changePageTo('settings-detective')">Change detective appearance</button>
+        </div>
+    </div>
+
+    <!-- Settings Sub Pages -->
+    <div id=settings-detective>
+        <p>This is change appearance</p>
         <button onclick="changePageTo('home')">home</button>
     </div>
 

@@ -1,6 +1,7 @@
+let currency = '$';
 let user_income = []; //2D array: each element is an array [item, amount, date]
 let user_expense = []; //2D array: each element is an array [item, amount, date, budget]
-let user_budget = new Map(); //key,value pair where (key = budget name), (value = budget amount)
+//let user_budget = new Map(); //key,value pair where (key = budget name), (value = budget amount)
 let total_balance = 0; //total balance of user
 
 class Budget {
@@ -63,7 +64,7 @@ class Budgets {
                     let m = document.createElement("img");
                     m.setAttribute('src','assets/images/Edit.svg');
                     m.setAttribute('class', 'image');
-                    m.setAttribute('onClick', 'all_budgets.loadModifyBudgetPage(' + index + '); changePageTo("modify-budget")');
+                    m.setAttribute('onClick', 'all_budgets.loadModifyBudgetPage(' + index + '); changePageTo("modify-budget"); updateStatus(6)');
                     item_wrapper.appendChild(m);
                 }else if(parent_class == 'budget-list-remove'){
                     let m = document.createElement("img");
@@ -157,8 +158,8 @@ function addExpense(){
         date = "(no-date)";
 
     if(select_index){
-        all_budgets.budgets[select_index].amount_used += amount;
-        budget = all_budgets.budgets[select_index].name;
+        all_budgets.budgets[select_index-1].amount_used += amount;
+        budget = all_budgets.budgets[select_index-1].name;
     }
 
     total_balance -= amount;
@@ -231,7 +232,7 @@ function addBudget(){
     all_budgets.newBudget(name, amount, occurs);
 
     //go back to home page
-    changePageTo('home');
+    changePageTo('budgets');
 }
 
 /*
@@ -253,7 +254,56 @@ function addTopBar(){
 
 function updateTotalBalance(){
     let locations = document.getElementsByClassName('total-balance');
-    for(let i = 0; i<locations.length; i++){
-        locations[i].innerHTML = total_balance;
+    
+    let output;
+    if(total_balance < 0){
+        output = '- ' + currency + Math.abs(total_balance);
     }
+    else{
+        output = currency + total_balance;
+    }
+
+    for(let i = 0; i<locations.length; i++){
+        locations[i].innerHTML = output;
+    }
+}
+
+// -------------------Detective Dialog-------------------
+//[0] - greetings
+//[1] - fill form
+//[2] - "I didn't mean that."
+//[3] - form submit
+//[4] - budget general
+//[5] - budget modify-list
+//[6] - budget modify-item
+//[7] - budget remove
+
+
+let detectiveLines = [
+    ['So, what brings you here?', 'Hi there. What would you like to do today?'], //0
+    ['Sure thing. Fill in this form.', 'Sure. Just complete this form.'], //1
+    ['I see. What would you like to do then?'], //2
+    ['Looks great. It\'s been taken care of.'], //3
+    ['What would you like to do with your budgets?'], //4
+    ['Which one would you like to modify?'], //5
+    ['Here\'s a record of it. What do you want to change?', 'Just fill out the blanks...'], //6
+    ['Which one would you like to remove?', 'Just click on the trash can to remove it.'] //7
+];
+
+function updateStatus(statusNum){
+    let line = document.getElementsByClassName('typing');
+
+    //generates random number within range
+    let randomElement = Math.floor(Math.random() * detectiveLines[statusNum].length);
+    for(let i = 0; i<line.length; i++){
+        line[i].innerHTML = detectiveLines[statusNum][randomElement];
+    }
+}
+
+
+//-------------------Settings-------------------
+function changeCurrency(){
+    var e = document.getElementById("currency");
+    currency = e.options[e.selectedIndex].text;
+    updateTotalBalance();
 }
