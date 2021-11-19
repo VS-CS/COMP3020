@@ -1,8 +1,8 @@
 let currency = '$';
 let user_income = []; //2D array: each element is an array [item, amount, date]
 let user_expense = []; //2D array: each element is an array [item, amount, date, budget]
-//let user_budget = new Map(); //key,value pair where (key = budget name), (value = budget amount)
 let total_balance = 0; //total balance of user
+let tolerance = 0;
 
 class Budget {
     constructor(name, amount, occurs){
@@ -110,6 +110,11 @@ function getVal(element) {
     return document.querySelector(element).value;
 }
 
+//Just for fun
+function resetTolerance(){
+    tolerance = 0;
+}
+
 /*
     This will read and add an income to the user_income array based on the add income form.
     Adds the amount to user total balance.
@@ -121,19 +126,24 @@ function addIncome(){
     let amount = parseInt(document.getElementById('amount').value);
     let date = document.getElementById('date').value;
 
-    if(!item)
-        item = "(no-name)";
-    if(!amount)
-        amount = 0;
-    if(!date)
-        date = "(no-date)";
+    if(item && amount && date){
+        resetTolerance();
+        total_balance += amount;
+        user_income.push([item, amount, date]);
+        
+        //go back to home page
+        updateStatus(3);
+        changePageTo('home');
+        updateTotalBalance();
 
-    total_balance += amount;
-    user_income.push([item, amount, date]);
-    
-    //go back to home page
-    changePageTo('home'); 
-    updateTotalBalance();
+    } else{
+        if(tolerance == detectiveLines[9].length-1){
+            updateLine(detectiveLines[9][detectiveLines[9].length-1]);
+        } else{
+            updateLine(detectiveLines[9][tolerance]);
+            tolerance++;
+        }
+    }
 }
 
 /*
@@ -146,29 +156,30 @@ function addExpense(){
     let item = getVal("#item");
     let amount = parseInt(document.getElementById('amount').value);
     let date = document.getElementById('date').value;
-    //let budget = document.getElementById('budget').value;
     let select_index = document.getElementById('budget').selectedIndex;
     let budget = "(no-budget)";
 
-    if(!item)
-        item = "(no-name)";
-    if(!amount)
-        amount = 0;
-    if(!date)
-        date = "(no-date)";
-
-    if(select_index){
-        all_budgets.budgets[select_index-1].amount_used += amount;
-        budget = all_budgets.budgets[select_index-1].name;
+    if(item && amount && date){
+        if(select_index){
+            all_budgets.budgets[select_index-1].amount_used += amount;
+            budget = all_budgets.budgets[select_index-1].name;
+        }
+        resetTolerance();
+        total_balance -= amount;
+        user_expense.push([item, amount, date, budget]);
+        
+        //go back to home page
+        updateStatus(3);
+        changePageTo('home');
+        updateTotalBalance();
+    } else{
+        if(tolerance == detectiveLines[9].length-1){
+            updateLine(detectiveLines[9][detectiveLines[9].length-1]);
+        } else{
+            updateLine(detectiveLines[9][tolerance]);
+            tolerance++;
+        }
     }
-
-    total_balance -= amount;
-    user_expense.push([item, amount, date, budget]);
-    updateTotalBalance();
-
-    //go back to home page
-    changePageTo('home'); 
-    
 }
 
 /*
@@ -203,17 +214,13 @@ function generateTable(table, data) {
 */
 function generateOptions(){
     let select = document.getElementById("budget");
-    //for(const [key, value] of user_budget){
     select.innerHTML = "";
     var d = document.createElement("option");
     d.setAttribute('selected', 'sekected');
     d.innerText = "(budgets)";
     select.add(d);
     all_budgets.budgets.forEach(budget => {
-        //var option = key;
         var el = document.createElement("option");
-        //el.text = option;
-        //el.value = option;
         el.text = budget.name;
         el.value = budget.ammount;
         select.add(el);
@@ -241,7 +248,6 @@ function addBudget(){
 */
 function changePageTo(pageID){
     document.getElementById('main').innerHTML = document.getElementById(pageID).innerHTML;
-    //document.getElementById("total_balance").innerHTML = total_balance; // I just didn't know where to put this ;-; -dani
 }
 
 
@@ -277,17 +283,20 @@ function updateTotalBalance(){
 //[5] - budget modify-list
 //[6] - budget modify-item
 //[7] - budget remove
-
+//[8] - back to main screen
+//[9] - incomplete forms
 
 let detectiveLines = [
     ['So, what brings you here?', 'Hi there. What would you like to do today?'], //0
     ['Sure thing. Fill in this form.', 'Sure. Just complete this form.'], //1
-    ['I see. What would you like to do then?'], //2
-    ['Looks great. It\'s been taken care of.'], //3
+    ['I see. What would you like to do then?', 'Hmm. I thought you meant that.'], //2
+    ['Looks great. It\'s been taken care of.', 'Perfect. I\'ll take care of that.'], //3
     ['What would you like to do with your budgets?'], //4
-    ['Which one would you like to modify?'], //5
+    ['Which one would you like to modify?', 'Which budget would you like to make change?'], //5
     ['Here\'s a record of it. What do you want to change?', 'Just fill out the blanks...'], //6
-    ['Which one would you like to remove?', 'Just click on the trash can to remove it.'] //7
+    ['Which one would you like to remove?', 'Just click on the trash can to remove it.'], //7
+    ['What else would you like to do?', 'Are there other things that I can do for you?'], //8
+    ["Sorry, you have to complete the form.","Sorry. I can't work with incomplete forms.", "I really can't do that.", "NO."] //9
 ];
 
 function updateStatus(statusNum){
@@ -300,6 +309,14 @@ function updateStatus(statusNum){
     }
 }
 
+function updateLine(new_line){
+    let line = document.getElementsByClassName('typing');
+
+    for(let i = 0; i<line.length; i++){
+        line[i].innerHTML = new_line;
+    }
+}
+
 
 //-------------------Settings-------------------
 function changeCurrency(){
@@ -307,3 +324,13 @@ function changeCurrency(){
     currency = e.options[e.selectedIndex].text;
     updateTotalBalance();
 }
+
+
+//for testing
+user_income.push(['Paycheck', 2000, "2021-11-10"]);
+user_income.push(['Stock', 150, "2021-11-19"]);
+user_expense.push(['A', 20, "2021-10-12", "Test_0"]);
+user_expense.push(['B', 54, "2021-11-13", "Test_1"]);
+user_expense.push(['C', 13, "2021-11-16", "Test_2"]);
+user_expense.push(['D', 78, "2021-11-16", "Test_3"]);
+user_expense.push(['E', 45, "2021-11-21", "Test_0"]);

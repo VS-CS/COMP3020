@@ -12,6 +12,7 @@
     --top-bar-size: 20%;
     --body-size: 80%;
     --dialog-background-colour: rgba(78, 44, 22, 0.75);
+    --dialog-hover-colour: #99775c;
 
 }
 
@@ -85,6 +86,7 @@
     border-style: solid;
     border-color: #b5a28e;
     border-radius: 1vh;
+    line-height: 1.8;
 }
 
 .budget-item-wrapper{
@@ -135,6 +137,11 @@
     font-size: inherit;
 }
 
+.dialog-options:hover {
+    border-style: inset;
+    background-color: var(--dialog-hover-colour)
+}
+
 .image {
     height: 100%;
     object-fit: scale-down;
@@ -177,8 +184,10 @@
     padding-right: 20px;
 }
 
-.dropdown{
-    font-family: 'Shippori Antique', sans-serif;
+#donutchart{
+    padding-top: 50px;
+    width: 500px;
+    height: 300px;
 }
 
 /*-----------------------Detective Dialogue-----------------------------*/

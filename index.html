@@ -6,11 +6,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!------------------ import jquery ------------------> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!------------------ import google chart ------------------> 
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
         <!------------------ Local Files ------------------> 
         <link rel="stylesheet" href="assets/css/styles.css">
-        <script src="assets/javascript/main.js"></script> 
+        <script src="assets/javascript/main.js"></script>
+        <script src="assets/javascript/analysis.js"></script>
     </head>
     <body onload="changePageTo('home'); addTopBar(); updateTotalBalance(); updateStatus(0)">
         <div class="screen_aspect_ratio">
@@ -33,10 +36,10 @@
                 <div class="typing"><!--Added by updateStatus()--></div>
             </div>
             <div class="dialog-options-wrapper">
-                <div onclick="changePageTo('add_income'); updateStatus(1)" class="dialog-options">add_income</div>
-                <div onclick="generateOptions(); changePageTo('add_expense'); updateStatus(1)" class="dialog-options">add_expense</div>
-                <div onclick="changePageTo('analysis')" class="dialog-options">analysis</div>
-                <div onclick="changePageTo('budgets'); updateStatus(4)" class="dialog-options">budgets</div>
+                <div onclick="changePageTo('budgets'); updateStatus(4)" class="dialog-options">I want to manage my budgets.</div>
+                <div onclick="changePageTo('analysis'); getAnalysis()" class="dialog-options">I want to get an analysis.</div>
+                <div onclick="generateOptions(); changePageTo('add_expense'); updateStatus(1)" class="dialog-options">I want to add an expense.</div>
+                <div onclick="changePageTo('add_income'); updateStatus(1)" class="dialog-options">I want to add an income.</div>
             </div>
         </div>
     </div>
@@ -63,9 +66,9 @@
                 </form>
             </div>
             <div class="dialog-options-wrapper">
-                <div onclick="changePageTo('home'); updateStatus(2)" class="dialog-options">I didn't mean that.</div>
+                <div onclick="changePageTo('home'); updateStatus(2); resetTolerance()" class="dialog-options">I didn't mean that.</div>
                 <div class="dialog-options">
-                    <div onclick="addIncome(); updateStatus(3)" class="add_income">Here you go.</div>
+                    <div onclick="addIncome()" class="add_income">Here you go.</div>
                 </div>
             </div>
         </div>
@@ -90,7 +93,7 @@
                     <label for="date">Date:</label>
                     <input type="date" id="date">
                     <br>
-                    <label for="budget">Budget:</label>
+                    <label for="budget">Budget (optional):</label>
                         <select id="budget">
                             
                         </select>
@@ -100,7 +103,7 @@
             <div class="dialog-options-wrapper">
                 <div onclick="changePageTo('home'); updateStatus(2)" class="dialog-options">I didn't mean that.</div>
                 <div class="dialog-options">
-                    <div onclick="addExpense(); updateStatus(3)" class="add_expense">Here you go.</div>
+                    <div onclick="addExpense()" class="add_expense">Here you go.</div>
                 </div>
             </div>
         </div>
@@ -109,8 +112,18 @@
     <!-- Analysis Page -->
     <div id=analysis>
         <div class="top-bar"><!-- Gets added on <body> load --></div>
-        <p>This is analysis!</p>
-        <button onclick="changePageTo('home')">home</button>
+            <div class="body">
+                <div class="box">
+                    <div class="typing"><!--Added by updateStatus()--></div>
+                </div>
+                <div class="budget-form-wrapper">
+                    <div id="donutchart"></div>
+                </div>
+                <div class="dialog-options-wrapper">
+                    <div onclick="changePageTo('home'); updateStatus(8)" class="dialog-options">I see.</div>
+                    <div onclick="test()" class="dialog-options" id="else">What else?</div>
+                </div>
+            </div>
     </div>
 
     <!-- Budgets Page -->
