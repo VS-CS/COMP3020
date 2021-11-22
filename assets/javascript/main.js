@@ -271,7 +271,7 @@ function addTopBar(){
     }
 }
 
-/*
+
 function updateTotalBalance(){
     let locations = document.getElementsByClassName('total-balance');
     
@@ -287,26 +287,7 @@ function updateTotalBalance(){
         locations[i].innerHTML = output;
     }
 }
-*/
 
-//add color on total balance text 
-function updateTotalBalance(){
-    let locations = document.getElementsByClassName('total-balance');
-    
-    let output;
-    if(total_balance < 0){
-        output = '- ' + currency + Math.abs(total_balance);
-        output.style.color = "#FF0000";  //red
-    }
-    else{
-        output = currency + total_balance;
-        output.style.color = "#00ff00";  //green
-    }
-
-    for(let i = 0; i<locations.length; i++){
-        locations[i].innerHTML = output;
-    }
-}
 
 // -------------------Detective Dialog-------------------
 //[0] - greetings
