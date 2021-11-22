@@ -36,8 +36,8 @@
                 <div class="typing"><!--Added by updateStatus()--></div>
             </div>
             <div class="dialog-options-wrapper">
+                <div onclick="changePageTo('analysis'); getAnalysis()" class="dialog-options">How am I doing?</div>
                 <div onclick="changePageTo('budgets'); updateStatus(4)" class="dialog-options">I want to manage my budgets.</div>
-                <div onclick="changePageTo('analysis'); getAnalysis()" class="dialog-options">I want to get an analysis.</div>
                 <div onclick="generateOptions(); changePageTo('add_expense'); updateStatus(1)" class="dialog-options">I want to add an expense.</div>
                 <div onclick="changePageTo('add_income'); updateStatus(1)" class="dialog-options">I want to add an income.</div>
             </div>
@@ -121,7 +121,31 @@
                 </div>
                 <div class="dialog-options-wrapper">
                     <div onclick="changePageTo('home'); updateStatus(8)" class="dialog-options">I see.</div>
-                    <div onclick="test()" class="dialog-options" id="else">What else?</div>
+                    <div onclick="getOverbudget()" class="dialog-options" id="else">What else?</div>
+                </div>
+            </div>
+    </div>
+
+    <div id=analysis-over-budget>
+        <div class="top-bar"><!-- Gets added on <body> load --></div>
+            <div class="body">
+                <div class="box">
+                    <div class="typing"><!--Added by updateStatus()--></div>
+                </div>
+                <div class="budget-form-wrapper">
+                    <h1><!--Table name--></h1> 
+                    <table>
+                        <tr>
+                            <th>item</th>
+                            <th>amount</th>
+                            <th>date</th>
+                        </tr>
+                        <!-- table contents loaded by function displayTable()-->
+                    </table>
+                </div>
+                <div class="dialog-options-wrapper">
+                    <div onclick="changePageTo('home'); updateStatus(8)" class="dialog-options">I see.</div>
+                    <div onclick="getOverbudget()" class="dialog-options" id="else">What else?</div>
                 </div>
             </div>
     </div>
@@ -158,8 +182,13 @@
                     <label for="budget_amount">Amount:</label>
                     <input type="number" id="budget_amount" placeholder="Enter budget amount">
                     <br>
-                    <label for="budget_amount">Occurs every _____ Day(s):</label>
-                    <input type="number" id="budget_occurs" placeholder="Enter number of day(s)">
+                    <label for="budget_amount">Occurs :</label>
+                    <select name="interval" id="mod-budget-occurs">
+                        <option value="weekly">weekly</option>
+                        <option value="bi-weekly">bi-weekly</option>
+                        <option value="monthly">monthly</option>
+                        <option value="yearly">yearly</option>
+                      </select>
                     <br>
                 </form>
             </div>
@@ -200,7 +229,6 @@
             <script>all_budgets.printBudgetList('budget-list-modify');</script>
             <div class="dialog-options-wrapper">
                 <div onclick="changePageTo('budgets'); updateStatus(1)" class="dialog-options">I didn't mean that.</div>
-                <!--div onclick="changePageTo('budgets'); all_budgets.updateBudgetList(); updateStatus(3)" class="dialog-options">Here you go</div-->
             </div>
         </div>
     </div>
@@ -220,8 +248,13 @@
                     <label for="budget_amount">Amount:</label>
                     <input type="number" id="mod-budget-amount" placeholder="Enter budget amount">
                     <br>
-                    <label for="budget_amount">Occurs every _____ Day(s):</label>
-                    <input type="number" id="mod-budget-occurs" placeholder="Enter number of day(s)">
+                    <label for="budget_amount">Occurs :</label>
+                    <select name="interval" id="mod-budget-occurs">
+                        <option value="weekly">weekly</option>
+                        <option value="bi-weekly">bi-weekly</option>
+                        <option value="monthly">monthly</option>
+                        <option value="yearly">yearly</option>
+                      </select>
                     <br>
                 </form>
             </div>
@@ -245,7 +278,7 @@
     <div id=income-history>
         <div class="tb-body">
             <button onclick="changePageTo('home')">home</button>
-            <button onclick="changePageTo('expense-history');displayTable(user_expense);">expense</button>
+            <button onclick="changePageTo('expense-history'); displayTable(user_expense);">expense</button>
             <table>
                 <tr>
                     <th>item</th>
@@ -278,6 +311,7 @@
         <div class="tb-body">
             <button onclick="changePageTo('home')">home</button>
             <div class="dropdown">
+                <label for="currency">Currency :</label>
                 <select name="currency" id="currency">
                     <option value="dollar">$</option>
                     <option value="euro">€</option>
@@ -285,16 +319,18 @@
                     <option value="pound">£</option>
                     <option value="won">₩</option>
                   </select>
-                  <button onclick="changeCurrency()">apply</button>
+                  <button onclick="changeCurrency(); all_budgets.updateBudgetList()">apply</button>
+                  <br>
+                  <label for="detective_apperance">Change detective appearance to :</label>
+                  <select name="detective_apperance" id="detective_apperance">
+                    <option value="normal">normal</option>
+                    <option value="chicken">chicken</option>
+                    <option value="mask">mask</option>
+                    <option value="shades">shades</option>
+                  </select>
+                  <button onclick="changeApperance()">apply</button>
             </div>
-            <button onclick="changePageTo('settings-detective')">Change detective appearance</button>
         </div>
-    </div>
-
-    <!-- Settings Sub Pages -->
-    <div id=settings-detective>
-        <p>This is change appearance</p>
-        <button onclick="changePageTo('home')">home</button>
     </div>
 
     <!-- Top Bar HTML Code-->
