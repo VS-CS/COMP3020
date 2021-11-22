@@ -6,6 +6,7 @@
     padding: 0;
     font-family: 'Special Elite', cursive;
     font-weight: bold;
+    font-size: inherit;
 }
 
 :root {
@@ -13,7 +14,7 @@
     --body-size: 80%;
     --dialog-background-colour: rgba(78, 44, 22, 0.75);
     --dialog-hover-colour: #99775c;
-
+    --text-size-multiplyer: 2;
 }
 
 .screen_aspect_ratio {
@@ -37,6 +38,7 @@
     background-position-x: center;
     background-position-y: 30%, 100%;
     filter: drop-shadow(-0.5vh 0.6vh 0.3vh rgba(0, 0, 0, 0.39));
+    font-size: calc(var(--text-size-multiplyer)*1vh);
 }
 
 .top-bar {
@@ -133,8 +135,7 @@
     border-style: outset;
     border-color: #5e361d;
     margin-top: 2%;
-    /*height: 20%;*/
-    font-size: inherit;
+    font-size: 1.2em;
 }
 
 .dialog-options:hover {
@@ -177,11 +178,10 @@
  
 .text-block {
     position: absolute;
-    bottom: 100px;
-    right: 50px;
-    font-size: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
+    font-size: 2em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%);
 }
 
 #donutchart{
@@ -189,6 +189,15 @@
     width: 500px;
     height: 300px;
 }
+
+button{font-size: 1.5em;}
+
+@media (max-aspect-ratio: 9/16) {
+    .main {
+        font-size: calc(var(--text-size-multiplyer)*1vw/(9/16));
+    }
+}
+
 
 /*-----------------------Detective Dialogue-----------------------------*/
 .box{
@@ -212,7 +221,7 @@
     overflow-y: auto;
     border-right: 3px solid;
 	font-family: 'Special Elite', cursive;
-	font-size: 20px;
+	font-size: 2em;
 }
 
 @keyframes typing {

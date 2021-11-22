@@ -271,6 +271,7 @@ function addTopBar(){
     }
 }
 
+
 function updateTotalBalance(){
     let locations = document.getElementsByClassName('total-balance');
     
@@ -286,6 +287,7 @@ function updateTotalBalance(){
         locations[i].innerHTML = output;
     }
 }
+
 
 // -------------------Detective Dialog-------------------
 //[0] - greetings
