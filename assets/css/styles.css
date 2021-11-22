@@ -6,6 +6,7 @@
     padding: 0;
     font-family: 'Special Elite', cursive;
     font-weight: bold;
+    font-size: inherit;
 }
 
 :root {
@@ -189,11 +190,14 @@
     height: 300px;
 }
 
+button{font-size: 1.5em;}
+
 @media (max-aspect-ratio: 9/16) {
     .main {
         font-size: calc(var(--text-size-multiplyer)*1vw/(9/16));
     }
 }
+
 
 /*-----------------------Detective Dialogue-----------------------------*/
 .box{
