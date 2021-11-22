@@ -333,6 +333,7 @@ function updateLine(new_line){
 
 //-------------------Settings-------------------
 function changeCurrency(){
+    document.getElementById("id_applied").innerHTML = "change saved."
     let e = document.getElementById("currency");
     currency = e.options[e.selectedIndex].text;
     updateTotalBalance();
@@ -359,6 +360,8 @@ function changeApperance(){
         main.style.backgroundImage ="url('assets/images/Detective_shades.svg'), linear-gradient(rgb(96,78,66), rgb(94,76,64), rgb(96,78,66))";
         main.style.backgroundPositionY = "30%, 100%";
     }
+
+    document.getElementById("appearance_applied").innerHTML = "change saved."
 }
 
 
