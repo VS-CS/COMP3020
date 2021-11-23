@@ -106,17 +106,6 @@
     font-size: 100%;
 }
 
-.dialog-box {
-    border-style: solid;
-    border-radius: 1vh;
-    border-color: black;
-    border-width: thin;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: auto;
-    margin-bottom: 2%;
-}
-
 .dialog-options-wrapper {
     display: flex;
     flex-direction: column-reverse;
@@ -210,18 +199,29 @@ button{font-size: 1.5em;}
     margin-top: auto;
     margin-bottom: 2%;
     width: 100%;
+    height: 20%;
 }
 
 .typing{
     padding-top: 2.5%;
     padding-bottom: 2.5%;
     width: 100%;
-    animation: typing 2s steps(44), blink .5s step-end infinite alternate;
-    white-space: nowrap;
+    /*animation: typing 2s steps(44), blink .5s step-end infinite alternate;*/
+    animation: fade-in 2s;
+    opacity: 1;
+    white-space: wrap;
     overflow-y: auto;
     border-right: 3px solid;
-	font-family: 'Special Elite', cursive;
 	font-size: 2em;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes typing {
