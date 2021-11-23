@@ -294,17 +294,19 @@ function updateTotalBalance(){
     let locations = document.getElementsByClassName('total-balance');
     
     let output;
+    let balance_color;
     if(total_balance < 0){
         output = '- ' + currency + Math.abs(total_balance);
-        output.style.color = "#FF0000";  //red
+        balance_color = "#DC3220";  //red
     }
     else{
         output = currency + total_balance;
-        output.style.color = "#00ff00";  //green
+        balance_color = "#005AB5";  //blue
     }
 
     for(let i = 0; i<locations.length; i++){
         locations[i].innerHTML = output;
+        locations[i].style.color = balance_color;
     }
 }
 
