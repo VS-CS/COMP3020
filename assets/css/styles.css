@@ -1,13 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shippori+Antique&display=swap');
 
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Special Elite', cursive;
+    font-weight: bold;
 }
 
 :root {
     --top-bar-size: 20%;
     --body-size: 80%;
+    --dialog-background-colour: rgba(78, 44, 22, 0.75);
+    --dialog-hover-colour: #99775c;
+
 }
 
 .screen_aspect_ratio {
@@ -23,7 +29,7 @@
     left:0;right:0;
 }
 
-.main {
+.main{
     height: 100%;
     background-image: url('Detective.svg'), linear-gradient(rgb(96,78,66), rgb(94,76,64), rgb(96,78,66));
     background-repeat: no-repeat;
@@ -47,15 +53,104 @@
 
 .body {
     height: var(--body-size);
+    width: 90%;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    margin-left: 5%;
 }
 
-.tb-body{
+.setting-tb-body{ 
     height: 100%;
     background-color: #cdb9a5;
     display: flex;
     flex-direction: column;
+}
+
+.setting-tb-body button{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+
+.history-tb-body{
+    height: auto;
+    background-color:#cdb9a5;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    padding: 140px 0;
+}
+
+.history-tb-body button{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 70px;
+    border-radius: 25px;
+}
+.inHistory-tb-body{
+    height: 100%;
+    background-color: #cdb9a5;
+    display: flex;
+    flex-direction: column;
+}
+
+.inHistory-tb-body button{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 23px;
+    border-radius: 10px;
+    position: fixed ;
+    bottom: 0;
+}
+
+.expense-tb-body{
+    height: 100%;
+    background-color: #cdb9a5;
+    display: flex;
+    flex-direction: column;
+}
+
+.expense-tb-body button{
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+    border-radius: 10px;
+    position: fixed ;
+    bottom: 0;
+}
+
+.budget-form-wrapper{
+    height:50%;
+    width: 80%;
+    background-image: url('Form.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-x: center;
+    background-position-y: 0;    
+}
+
+.budget-form{
+    margin-top: 15%;
+    height: 80%;
+    width: 90%;
+    margin-left: 4%;
+    overflow-y: auto;
+    border-style: solid;
+    border-color: #b5a28e;
+    border-radius: 1vh;
+    line-height: 1.8;
+}
+
+.budget-item-wrapper{
+    margin-top: 1.5%;
+    margin-bottom: 1%;
+    margin-left: 5%;
+    display: flex;
+    align-content: stretch;
+    height: 20%;
+    width: 90%;
+    justify-content: space-between;
+    vertical-align: middle;
+    border-bottom: 0.3vh double #b5a28e;
+    align-items: center;
+    font-size: 100%;
 }
 
 .dialog-box {
@@ -73,6 +168,7 @@
     display: flex;
     flex-direction: column-reverse;
     bottom: 0;
+    width: 100%;
     margin-left: 5%;
     margin-right: 5%;
     margin-top: 2%;
@@ -82,12 +178,17 @@
 .dialog-options {
     position:relative;
     display: block;
-    background-color: rgba(94, 54, 29, 0.5);
+    background-color: var(--dialog-background-colour);
     border-style: outset;
     border-color: #5e361d;
     margin-top: 2%;
-    height: 20%;
+    /*height: 20%;*/
     font-size: inherit;
+}
+
+.dialog-options:hover {
+    border-style: inset;
+    background-color: var(--dialog-hover-colour)
 }
 
 .image {
@@ -132,16 +233,23 @@
     padding-right: 20px;
 }
 
+#donutchart{
+    padding-top: 50px;
+    width: 500px;
+    height: 300px;
+}
+
 /*-----------------------Detective Dialogue-----------------------------*/
 .box{
 	border-style: outset;
 	border-color: #5e361d;
- 	background: rgba(94, 54, 29, 0.5);
+ 	background: var(--dialog-background-colour);
  	display: inline-block;
     margin-left: 5%;
     margin-right: 5%;
     margin-top: auto;
     margin-bottom: 2%;
+    width: 100%;
 }
 
 .typing{
@@ -150,11 +258,12 @@
     width: 100%;
     animation: typing 2s steps(44), blink .5s step-end infinite alternate;
     white-space: nowrap;
-    overflow: hidden;
+    overflow-y: auto;
     border-right: 3px solid;
 	font-family: 'Special Elite', cursive;
 	font-size: 20px;
 }
+
 
 @keyframes typing {
   from {
