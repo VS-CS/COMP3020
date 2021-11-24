@@ -93,7 +93,7 @@
                     <label for="date">Date:</label>
                     <input type="date" id="date">
                     <br>
-                    <label for="budget">Budget (optional):</label>
+                    <label for="budget">Budget<span class="optional">(optional)</span></label>
                         <select id="budget">
                             
                         </select>
@@ -121,7 +121,7 @@
                 </div>
                 <div class="dialog-options-wrapper">
                     <div onclick="changePageTo('home'); updateStatus(8)" class="dialog-options">I see.</div>
-                    <div onclick="getOverbudget()" class="dialog-options" id="else">What else?</div>
+                    <div onclick="getBudgetAnalysis()" class="dialog-options" id="else">What else?</div>
                 </div>
             </div>
     </div>
@@ -133,7 +133,8 @@
                     <div class="typing"><!--Added by updateStatus()--></div>
                 </div>
                 <div class="budget-form-wrapper">
-                    <h1><!--Table name--></h1> 
+                    <div class="budget-form">
+                        <h1 id="overbudget-name"><!--Table name--></h1> 
                     <table>
                         <tr>
                             <th>item</th>
@@ -142,10 +143,11 @@
                         </tr>
                         <!-- table contents loaded by function displayTable()-->
                     </table>
+                    </div>
                 </div>
                 <div class="dialog-options-wrapper">
                     <div onclick="changePageTo('home'); updateStatus(8)" class="dialog-options">I see.</div>
-                    <div onclick="getOverbudget()" class="dialog-options" id="else">What else?</div>
+                    <div onclick="getBudgetAnalysis()" class="dialog-options" id="else">What else?</div>
                 </div>
             </div>
     </div>
@@ -325,7 +327,7 @@
                   <label for="detective_apperance">Change detective appearance to :</label>
                   <select name="detective_apperance" id="detective_apperance">
                     <option value="normal">normal</option>
-                    <option value="chicken">chicken</option>
+                    <option value="turkey">turkey</option>
                     <option value="mask">mask</option>
                     <option value="shades">shades</option>
                   </select>

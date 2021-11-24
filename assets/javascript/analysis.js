@@ -1,30 +1,50 @@
+//load google charts
+google.charts.load("current", {packages:["corechart"]});
+
 let count = 0;
-let over = [];
+let over = []; // 2d array that contains all the budgets that the user has spend over [[budgetName, amountSpentOver]...]
+let under = []; 
 
 function getAnalysis(){
     let m = getExpenseMap();
-    let item = getMax(m);
-    over = shuffleArray(checkBudget());//update
-    count = over.length; //update
-    displayChart();
-
-    updateLine("It seems like you're spending mostly on " + item);
+    let item = getMax(m); //get budget that the user spent the most on
+    over = shuffleArray(checkBudgetOver());//update
+    under = shuffleArray(checkBudgetUnder());
+    count = over.length + under.length; //update
+    
+    //display the chart first
+    displayChart('Total Spendings', createDataTable(m));
+    updateLine("It seems like you're spending mostly on [" + item + "]");
 }
 
 //checks all budgets that have more expense than 
-function getOverbudget(){
+function getBudgetAnalysis(){
     changePageTo("analysis-over-budget");
     if(count > 0){
-        let budget_name = over[count-1][0];
-        let list = getAllExpense(budget_name);
-        updateLine("You're spending too much on " + budget_name + ". You went over " + currency + over[count-1][1] + " of your budget.");
+        let item = [];
+        let budget_name = "";
+        let list;
+        if(over.length){
+            item = over.pop();
+            budget_name = item[0];
+            updateLine("You're spending too much on [" + budget_name + "]. You went over " + currency + item[1] + " of your budget.");
+        } else if (under.length){
+            item = under.pop();
+            budget_name = item[0];
+            updateLine("You have some extra for [" + budget_name + "]. You still have " + currency + item[1] + " left.");
+        }
+
+        list = getAllExpense(budget_name);
+        document.getElementById("overbudget-name").innerHTML = budget_name;
         displayTable(list);
         count--;
     } else{
-        updateLine("That's all I can say for now.");
+        updateStatus(10);
+        changePageTo("analysis");
         document.getElementById("else").style.display= "none";
     }
 }
+
 
 /*
  List of things to create
@@ -33,19 +53,20 @@ function getOverbudget(){
  - expense: check if budget has more than 50%
  - expense: most spent budget
  - expense: most expensive item of the month
-
-when user asks, create an array of booleans to check if a given analysis function should be called
-user can keep asking till the list is empty
 */ 
 
 //This functuon returns all the expenses from a user's budget by a given name
 function getAllExpense(budget){
     let expenses = [];
 
-    for (const item of user_expense){
-        const budget_name = item[3];
+    for (let i = 0; i < user_expense.length; i++){
+        const budget_name = user_expense[i][3];
         if (budget_name == budget){
-            expenses.push([item]);
+            let item = [];
+            for(let j = 0; j < user_expense[i].length-1; j++){
+                item.push(user_expense[i][j]);
+            }
+            expenses.push(item);
         }
     }
     return expenses;
@@ -142,7 +163,7 @@ function getMax(aMap) {
 }
 
 //check over budget: returns 2D array [budget, amout spent over]
-function checkBudget(){
+function checkBudgetOver(){
     let over_budget = [];
     let m = getExpenseMap();
     for(const budget of all_budgets.budgets){ //go through all budgets
@@ -154,14 +175,26 @@ function checkBudget(){
     return over_budget;
 }
 
+//check under budget: returns 2D array [budget, amout spent under]
+function checkBudgetUnder(){
+    let under_budget = [];
+    let m = getExpenseMap();
+    for(const budget of all_budgets.budgets){ //go through all budgets
+        let b = m.get(budget.name); //b == total amount spent on budget
+        if(budget.amount > b){
+            under_budget.push([budget.name, (budget.amount - b)]);
+        }
+    } 
+    return under_budget;
+}
+
 
 //Chart functions
-function displayChart(){
-    google.charts.load("current", {packages:["corechart"]});
+function displayChart(chartTitle, dataTable){
     google.charts.setOnLoadCallback(drawChart);
     function drawChart() {
       var options = {
-        title: 'Total Spendings',
+        title: chartTitle,
         pieHole: 0.4,
         backgroundColor: { fill:'transparent' },
         pieSliceTextStyle: {
@@ -173,10 +206,11 @@ function displayChart(){
       };
 
       var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-      chart.draw(createDataTable(getExpenseMap()), options);
+      chart.draw(dataTable, options);
     }
 }
 
+//creates a data table from a given Map
 function createDataTable(m){
     var data = new google.visualization.DataTable();
     data.addColumn('string','Budget');

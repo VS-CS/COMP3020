@@ -2,7 +2,7 @@ let currency = '$';
 let detective_img = 'normal';
 let user_income = []; //2D array: each element is an array [item, amount, date]
 let user_expense = []; //2D array: each element is an array [item, amount, date, budget]
-let total_balance = 0; //total balance of user
+let total_balance = 1570; //total balance of user (set to match config)
 let tolerance = 0;
 
 class Budget {
@@ -208,15 +208,19 @@ function displayTable(tableName){
     A helper function for displayTable().
     Generates an HTML table from a 2D array.
     source: https://www.valentinog.com/blog/html-table/
- */
+*/
 function generateTable(table, data) {
     for (let element of data) {
         let row = table.insertRow();
         for (let entry in element) {
-        let cell = row.insertCell();
-        let text = document.createTextNode(element[entry]);
-        cell.appendChild(text);
+            let cell = row.insertCell();
+            let text = document.createTextNode(element[entry]);
+            cell.appendChild(text);
         }
+        // let edit = document.createElement("BUTTON");
+        // edit.innerHTML = 'click';
+        // edit.onclick = //call function
+        // row.appendChild(edit);
     }
 }
 
@@ -263,31 +267,12 @@ function changePageTo(pageID){
     document.getElementById('main').innerHTML = document.getElementById(pageID).innerHTML;
 }
 
-
 function addTopBar(){
     let locations = document.getElementsByClassName('top-bar');
     for(let i = 0; i<locations.length; i++){
         locations[i].innerHTML = document.getElementById('top-bar').innerHTML;
     }
 }
-
-/*
-function updateTotalBalance(){
-    let locations = document.getElementsByClassName('total-balance');
-    
-    let output;
-    if(total_balance < 0){
-        output = '- ' + currency + Math.abs(total_balance);
-    }
-    else{
-        output = currency + total_balance;
-    }
-
-    for(let i = 0; i<locations.length; i++){
-        locations[i].innerHTML = output;
-    }
-}
-*/
 
 //add color on total balance text 
 function updateTotalBalance(){
@@ -296,12 +281,12 @@ function updateTotalBalance(){
     let output;
     let balance_color;
     if(total_balance < 0){
-        output = '- ' + currency + Math.abs(total_balance);
+        output = '-' + currency + Math.abs(total_balance);
         balance_color = "#DC3220";  //red
     }
     else{
         output = currency + total_balance;
-        balance_color = "#005AB5";  //blue
+        balance_color = "black";  //blue -yep we should change this
     }
 
     for(let i = 0; i<locations.length; i++){
@@ -322,6 +307,7 @@ function updateTotalBalance(){
 //[7] - budget remove
 //[8] - back to main screen
 //[9] - incomplete forms
+//[10] - that's all
 
 let detectiveLines = [
     ['So, what brings you here?', 'Hi there. What would you like to do today?'], //0
@@ -333,7 +319,8 @@ let detectiveLines = [
     ['Here\'s a record of it. What do you want to change?', 'Just fill out the blanks...'], //6
     ['Which one would you like to remove?', 'Just click on the trash can to remove it.'], //7
     ['What else would you like to do?', 'Are there other things that I can do for you?'], //8
-    ["Sorry, you have to complete the form.","Sorry. I can't work with incomplete forms.", "I really can't do that.", "NO."] //9
+    ['Sorry, you have to complete the form.','Sorry. I can\'t work with incomplete forms.', 'I really can\'t do that.', 'NO.'], //9
+    ['That\'s all I can say for now', 'There\'s nothing much other than that.'] //10
 ];
 
 function updateStatus(statusNum){
@@ -367,12 +354,11 @@ function changeApperance(){
     let e = document.getElementById("detective_apperance");
     let main = document.getElementById('main');
     detective_img = e.options[e.selectedIndex].text;
-    console.log(detective_img);
     if(detective_img == 'normal'){
         main.style.backgroundImage ="url('assets/images/Detective.svg'), linear-gradient(rgb(96,78,66), rgb(94,76,64), rgb(96,78,66))";
         main.style.backgroundPositionY = "30%, 100%";
     }
-    else if(detective_img == 'chicken'){
+    else if(detective_img == 'turkey'){
         main.style.backgroundImage ="url('assets/images/Detective_chicken_hat.svg'), linear-gradient(rgb(96,78,66), rgb(94,76,64), rgb(96,78,66))";
         main.style.backgroundPositionY = "-10%, 100%";
     }

@@ -17,6 +17,10 @@
     --text-size-multiplyer: 2;
 }
 
+h1 {
+    font-size: 2em;
+}
+
 .screen_aspect_ratio {
     aspect-ratio: 9/16;
     border-style: solid;
@@ -222,6 +226,10 @@ button{font-size: 1.5em;}
     border-right: 3px solid;
 	font-family: 'Special Elite', cursive;
 	font-size: 2em;
+}
+
+.optional{
+    font-size: 0.7em;
 }
 
 @keyframes typing {
