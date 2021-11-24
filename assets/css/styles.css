@@ -193,9 +193,16 @@ h1 {
 }
 
 #donutchart{
-    padding-top: 50px;
-    width: 500px;
-    height: 300px;
+    /*padding-top: 50px;*/
+    margin-top: 13%;
+    width: 98%;
+    height: 80%;
+    /*width: 500px;
+    height: 300px;*/
+    border-style: solid;
+    border-color: #b5a28e;
+    border-radius: 1vh;
+    line-height: 1.8;
 }
 
 th {
