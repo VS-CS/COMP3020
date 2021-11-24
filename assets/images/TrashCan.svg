@@ -1,26 +1,121 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!-- Created with Vectornator for iOS (http://vectornator.io/) --><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg height="100%" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100%" xmlns:vectornator="http://vectornator.io" version="1.1" viewBox="0 0 100 100">
-<metadata>
-<vectornator:setting key="DimensionsVisible" value="1"/>
-<vectornator:setting key="PencilOnly" value="0"/>
-<vectornator:setting key="SnapToPoints" value="0"/>
-<vectornator:setting key="OutlineMode" value="0"/>
-<vectornator:setting key="CMYKEnabledKey" value="0"/>
-<vectornator:setting key="GuidesVisible" value="1"/>
-<vectornator:setting key="SnapToEdges" value="0"/>
-<vectornator:setting key="RulersVisible" value="1"/>
-<vectornator:setting key="DisplayWhiteBackground" value="0"/>
-<vectornator:setting key="doHistoryDisabled" value="0"/>
-<vectornator:setting key="TimeLapseWatermarkDisabled" value="0"/>
-<vectornator:setting key="SnapToGuides" value="1"/>
-<vectornator:setting key="DynamicGuides" value="0"/>
-<vectornator:setting key="Units" value="Pixels"/>
-<vectornator:setting key="IsolateActiveLayer" value="0"/>
-<vectornator:setting key="SnapToGrid" value="0"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Vectornator for iOS (http://vectornator.io/) -->
+
+<svg
+   height="100%"
+   style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;"
+   xml:space="preserve"
+   width="100%"
+   version="1.1"
+   viewBox="0 0 100 100"
+   id="svg11"
+   sodipodi:docname="TrashCan.svg"
+   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:vectornator="http://vectornator.io"><sodipodi:namedview
+   id="namedview13"
+   pagecolor="#ffffff"
+   bordercolor="#111111"
+   borderopacity="1"
+   inkscape:pageshadow="0"
+   inkscape:pageopacity="0"
+   inkscape:pagecheckerboard="1"
+   showgrid="false"
+   inkscape:zoom="7.19"
+   inkscape:cx="22.600834"
+   inkscape:cy="49.443672"
+   inkscape:window-width="1680"
+   inkscape:window-height="987"
+   inkscape:window-x="-8"
+   inkscape:window-y="-8"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="svg11"
+   showguides="false" />
+<metadata
+   id="metadata2">
+<vectornator:setting
+   key="DimensionsVisible"
+   value="1" />
+<vectornator:setting
+   key="PencilOnly"
+   value="0" />
+<vectornator:setting
+   key="SnapToPoints"
+   value="0" />
+<vectornator:setting
+   key="OutlineMode"
+   value="0" />
+<vectornator:setting
+   key="CMYKEnabledKey"
+   value="0" />
+<vectornator:setting
+   key="GuidesVisible"
+   value="1" />
+<vectornator:setting
+   key="SnapToEdges"
+   value="0" />
+<vectornator:setting
+   key="RulersVisible"
+   value="1" />
+<vectornator:setting
+   key="DisplayWhiteBackground"
+   value="0" />
+<vectornator:setting
+   key="doHistoryDisabled"
+   value="0" />
+<vectornator:setting
+   key="TimeLapseWatermarkDisabled"
+   value="0" />
+<vectornator:setting
+   key="SnapToGuides"
+   value="1" />
+<vectornator:setting
+   key="DynamicGuides"
+   value="0" />
+<vectornator:setting
+   key="Units"
+   value="Pixels" />
+<vectornator:setting
+   key="IsolateActiveLayer"
+   value="0" />
+<vectornator:setting
+   key="SnapToGrid"
+   value="0" />
 </metadata>
-<defs/>
-<g id="레이어 1" vectornator:layerName="레이어 1">
-<path stroke="#382c23" stroke-width="2.08" d="M36.3231+19.7384L36.3231+14.9127C36.3231+10.1141+38.4688+8.15878+43.2557+8.15878L57.1208+8.15878C61.9078+8.15878+64.0534+10.1141+64.0534+14.9127L64.0534+19.7384" fill="#4a382c" stroke-linecap="butt" opacity="1" stroke-linejoin="miter"/>
-<path stroke="#382c23" stroke-width="2.08" d="M84.8511+18.2897L84.8511+18.2897C84.8511+16.429+83.2948+14.9127+81.3848+14.9127L18.9917+14.9127C17.0818+14.9127+15.5254+16.429+15.5254+18.2897L15.5254+18.2897L12.0591+18.2897L12.0591+25.0437L88.3174+25.0437L88.3174+18.2897L84.8511+18.2897ZM18.9917+28.4206L18.9917+82.4522C18.9917+88.0377+23.6573+92.5831+29.3906+92.5831L70.986+92.5831C76.7192+92.5831+81.3848+88.0377+81.3848+82.4522L81.3848+28.4206L18.9917+28.4206ZM39.7894+79.0752L32.8569+79.0752L32.8569+38.5515L39.7894+38.5515L39.7894+79.0752ZM53.6546+79.0752L46.722+79.0752L46.722+38.5515L53.6546+38.5515L53.6546+79.0752ZM67.5197+79.0752L60.5871+79.0752L60.5871+38.5515L67.5197+38.5515L67.5197+79.0752Z" fill="#4a382c" stroke-linecap="butt" opacity="1" stroke-linejoin="miter"/>
+<defs
+   id="defs4"><color-profile
+     name="Apple-RGB"
+     xlink:href="file:///C:/Windows/system32/spool/drivers/color/AppleRGB.icc"
+     id="color-profile14277" /><color-profile
+     name="Adobe-RGB--1998-"
+     xlink:href="file:///C:/Windows/system32/spool/drivers/color/AdobeRGB1998.icc"
+     id="color-profile14279" /></defs>
+<g
+   id="레이어 1"
+   vectornator:layerName="레이어 1">
+<path
+   stroke="#382c23"
+   stroke-width="2.08"
+   d="M36.3231+19.7384L36.3231+14.9127C36.3231+10.1141+38.4688+8.15878+43.2557+8.15878L57.1208+8.15878C61.9078+8.15878+64.0534+10.1141+64.0534+14.9127L64.0534+19.7384"
+   fill="#4a382c"
+   stroke-linecap="butt"
+   opacity="1"
+   stroke-linejoin="miter"
+   id="path6"
+   style="fill:#856d5c;fill-opacity:1" />
+<path
+   stroke="#382c23"
+   stroke-width="2.08"
+   d="M84.8511+18.2897L84.8511+18.2897C84.8511+16.429+83.2948+14.9127+81.3848+14.9127L18.9917+14.9127C17.0818+14.9127+15.5254+16.429+15.5254+18.2897L15.5254+18.2897L12.0591+18.2897L12.0591+25.0437L88.3174+25.0437L88.3174+18.2897L84.8511+18.2897ZM18.9917+28.4206L18.9917+82.4522C18.9917+88.0377+23.6573+92.5831+29.3906+92.5831L70.986+92.5831C76.7192+92.5831+81.3848+88.0377+81.3848+82.4522L81.3848+28.4206L18.9917+28.4206ZM39.7894+79.0752L32.8569+79.0752L32.8569+38.5515L39.7894+38.5515L39.7894+79.0752ZM53.6546+79.0752L46.722+79.0752L46.722+38.5515L53.6546+38.5515L53.6546+79.0752ZM67.5197+79.0752L60.5871+79.0752L60.5871+38.5515L67.5197+38.5515L67.5197+79.0752Z"
+   fill="#4a382c"
+   stroke-linecap="butt"
+   opacity="1"
+   stroke-linejoin="miter"
+   id="path8"
+   style="fill:#856d5c;fill-opacity:1" />
 </g>
 </svg>
