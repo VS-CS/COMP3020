@@ -198,19 +198,33 @@ function modifyExpense(){
 }
 
 function removeIncome(){
-    total_balance -= user_income[item_index][1];
-    user_income.splice(item_index, 1);
-    updateTotalBalance();
-    updateStatus(3);
-    changePageTo('home');    
+    var c = confirm("Are you sure you wish to delete this income?");
+
+    if(c == true){
+        total_balance -= user_income[item_index][1];
+        user_income.splice(item_index, 1);
+        updateTotalBalance();
+        updateStatus(3);
+        changePageTo('home');   
+    }else{
+
+    }
+    return false;
 }
 
 function removeExpense(){
-    total_balance += user_expense[item_index][1];
-    user_expense.splice(item_index, 1);
-    updateTotalBalance();
-    updateStatus(3);
-    changePageTo('home');
+    var c = confirm("Are you sure you wish to delete this expense?");
+
+    if(c == true){
+        total_balance += user_expense[item_index][1];
+        user_expense.splice(item_index, 1);
+        updateTotalBalance();
+        updateStatus(3);
+        changePageTo('home');
+    }else{
+
+    }
+    return false;
 }
 
 function confirmMsg(){
