@@ -42,8 +42,14 @@ class Budgets {
     }
 
     removeBudgetAt(index_pos){
-        this.budgets.splice(index_pos, 1);
-        this.updateBudgetList();
+        var c = confirm("Are you sure you wish to delete this budget?");
+
+        if(c == true){
+            this.budgets.splice(index_pos, 1);
+            this.updateBudgetList();
+        }
+
+        return false
     }
 
     //finds budget index with name
@@ -84,7 +90,7 @@ class Budgets {
                     let m = document.createElement("img");
                     m.setAttribute('src','assets/images/TrashCan.svg');
                     m.setAttribute('class', 'image');
-                    m.setAttribute('onClick', 'all_budgets.removeBudgetAt(' + index + ')');
+                    m.setAttribute('onClick', 'return all_budgets.removeBudgetAt(' + index + ')');
                     item_wrapper.appendChild(m);
                 }
                 parents[i].appendChild(item_wrapper);
