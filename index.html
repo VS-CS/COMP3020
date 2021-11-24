@@ -12,6 +12,7 @@
 
         <!------------------ Local Files ------------------> 
         <link rel="stylesheet" href="assets/css/styles.css">
+        <script src="assets/javascript/userData.js"></script>
         <script src="assets/javascript/main.js"></script>
         <script src="assets/javascript/analysis.js"></script>
     </head>
@@ -270,17 +271,17 @@
     <!-- History Page -->
     <div id=history>
         <div class="tb-body">
-            <button onclick="changePageTo('home')">home</button>
-            <button onclick="changePageTo('income-history');displayTable(user_income);">income</button>
-            <button onclick="changePageTo('expense-history');displayTable(user_expense);">expense</button>
+            <button onclick="changePageTo('home'); updateStatus(8)">home</button>
+            <button onclick="changePageTo('income-history');displayTableButton(user_income);">income</button>
+            <button onclick="changePageTo('expense-history');displayTableButton(user_expense);">expense</button>
         </div>
     </div>
 
     <!--History Sub Pages-->
     <div id=income-history>
         <div class="tb-body">
-            <button onclick="changePageTo('home')">home</button>
-            <button onclick="changePageTo('expense-history'); displayTable(user_expense);">expense</button>
+            <button onclick="changePageTo('home'); updateStatus(8)">home</button>
+            <button onclick="changePageTo('expense-history'); displayTableButton(user_expense);">expense</button>
             <table>
                 <tr>
                     <th>item</th>
@@ -294,8 +295,8 @@
 
     <div id=expense-history>
         <div class="tb-body">
-            <button onclick="changePageTo('home')">home</button>
-            <button onclick="changePageTo('income-history');displayTable(user_income);">income</button>
+            <button onclick="changePageTo('home'); updateStatus(8)">home</button>
+            <button onclick="changePageTo('income-history');displayTableButton(user_income);">income</button>
             <table>
                 <tr>
                     <th>item</th>
@@ -307,11 +308,58 @@
             </table>
         </div>
     </div>
+ 
+    <!-- Modify Income Page -->
+    <div id=modify_income>
+        <div class="tb-body">
+            <button onclick="changePageTo('home'); updateStatus(8)">home</button>
+            <form class="budget-form">
+                <h1>Add Income</h1>
+                <label for="item">Description:</label>
+                <input type="text" id="item" placeholder="Enter Item description">
+                <br>
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" placeholder="Enter Item Amount">
+                <br>
+                <label for="date">Date:</label>
+                <input type="date" id="date">
+                <br>
+                <button onclick="modifyIncome()">submit</button>
+                <button onclick="removeIncome()">delete</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modify Expense Page -->
+    <div id=modify_expense>
+        <div class="tb-body">
+            <button onclick="changePageTo('home'); updateStatus(8)">home</button>
+            <form class="budget-form">
+                <h1>Add Expense</h1>
+                <label for="item">Description:</label>
+                <input type="text" id="item" placeholder="Enter Item description">
+                <br>
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" placeholder="Enter Item Amount">
+                <br>
+                <label for="date">Date:</label>
+                <input type="date" id="date">
+                <br>
+                <label for="budget">Budget<span class="optional">(optional)</span></label>
+                    <select id="budget">
+                        
+                    </select>
+                <br>
+                <button onclick="modifyExpense()">submit</button>
+                <button onclick="removeExpense()">delete</button>
+            </form>
+        </div>
+    </div>
 
     <!-- Settings Page -->
     <div id=settings>
         <div class="tb-body">
-            <button onclick="changePageTo('home')">home</button>
+            <button onclick="changePageTo('home'); updateStatus(8)">home</button>
             <div class="dropdown">
                 <label for="currency">Currency :</label>
                 <select name="currency" id="currency">

@@ -14,7 +14,7 @@ function getAnalysis(){
     
     //display the chart first
     displayChart('Total Spendings', createDataTable(m));
-    updateLine("It seems like you're spending mostly on [" + item + "]");
+    updateLine("It seems like you're spending mostly on [" + item + "].");
 }
 
 //checks all budgets that have more expense than 

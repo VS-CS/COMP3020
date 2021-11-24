@@ -1,9 +1,5 @@
 let currency = '$';
-let detective_img = 'normal';
-let user_income = []; //2D array: each element is an array [item, amount, date]
-let user_expense = []; //2D array: each element is an array [item, amount, date, budget]
-let total_balance = 1570; //total balance of user (set to match config)
-let tolerance = 0;
+let detective_img = 'normal'; //detective appearance
 
 class Budget {
     constructor(name, amount, occurs){
@@ -113,6 +109,21 @@ class Budgets {
 let all_budgets = new Budgets();
 let cur_index_pos = 0;
 
+/*
+    This will read and add a budget to the user_budget Map based on the new budget form.
+    Returns to the homepage when done.
+ */
+    function addBudget(){
+        let name = getVal("#budget_name");
+        let amount = parseInt(document.getElementById('budget_amount').value);
+        let occurs = getVal('#mod-budget-occurs');
+        
+        all_budgets.newBudget(name, amount, occurs);
+    
+        //go back to home page
+        changePageTo('budgets');
+    }
+
 /*  
     This returns the text value of an input tag with the element selector.
     e.g. <input type="text" id="item" placeholder="Enter Item description">
@@ -120,108 +131,6 @@ let cur_index_pos = 0;
 */
 function getVal(element) {
     return document.querySelector(element).value;
-}
-
-//Just for fun
-function resetTolerance(){
-    tolerance = 0;
-}
-
-/*
-    This will read and add an income to the user_income array based on the add income form.
-    Adds the amount to user total balance.
-    Returns to the homepage when done.
- */
-function addIncome(){
-    //get data from each element
-    let item = getVal("#item")
-    let amount = parseInt(document.getElementById('amount').value);
-    let date = document.getElementById('date').value;
-
-    if(item && amount && date){
-        resetTolerance();
-        total_balance += amount;
-        user_income.push([item, amount, date]);
-        
-        //go back to home page
-        updateStatus(3);
-        changePageTo('home');
-        updateTotalBalance();
-
-    } else{
-        if(tolerance == detectiveLines[9].length-1){
-            updateLine(detectiveLines[9][detectiveLines[9].length-1]);
-        } else{
-            updateLine(detectiveLines[9][tolerance]);
-            tolerance++;
-        }
-    }
-}
-
-/*
-    This will read and add an expense to the user_income array based on the add expense form.
-    Subtracts the amount from user total balance.
-    Returns to the homepage when done.
- */
-function addExpense(){
-    //get data from each element
-    let item = getVal("#item");
-    let amount = parseInt(document.getElementById('amount').value);
-    let date = document.getElementById('date').value;
-    let select_index = document.getElementById('budget').selectedIndex;
-    let budget = "(no-budget)";
-
-    if(item && amount && date){
-        if(select_index){
-            all_budgets.budgets[select_index-1].amount_used += amount;
-            budget = all_budgets.budgets[select_index-1].name;
-        }
-        resetTolerance();
-        total_balance -= amount;
-        user_expense.push([item, amount, date, budget]);
-        
-        //go back to home page
-        updateStatus(3);
-        changePageTo('home');
-        updateTotalBalance();
-    } else{
-        if(tolerance == detectiveLines[9].length-1){
-            updateLine(detectiveLines[9][detectiveLines[9].length-1]);
-        } else{
-            updateLine(detectiveLines[9][tolerance]);
-            tolerance++;
-        }
-    }
-}
-
-/*
-    This will display the corresponding table on an HTML page.
-    tableName is the name of the 2D array we want to display as an HTML table.
-    Needs a predefined table & table header for use. (Check history subpage for referrence)
-*/
-function displayTable(tableName){
-    let table = document.querySelector("table");
-    generateTable(table, tableName);
-}
-
-/* 
-    A helper function for displayTable().
-    Generates an HTML table from a 2D array.
-    source: https://www.valentinog.com/blog/html-table/
-*/
-function generateTable(table, data) {
-    for (let element of data) {
-        let row = table.insertRow();
-        for (let entry in element) {
-            let cell = row.insertCell();
-            let text = document.createTextNode(element[entry]);
-            cell.appendChild(text);
-        }
-        // let edit = document.createElement("BUTTON");
-        // edit.innerHTML = 'click';
-        // edit.onclick = //call function
-        // row.appendChild(edit);
-    }
 }
 
 /*
@@ -243,21 +152,6 @@ function generateOptions(){
     });
 }
 
-/*
-    This will read and add a budget to the user_budget Map based on the new budget form.
-    Returns to the homepage when done.
-    INCOMPLETE: need to add recurring option
- */
-function addBudget(){
-    let name = getVal("#budget_name");
-    let amount = parseInt(document.getElementById('budget_amount').value);
-    let occurs = getVal('#mod-budget-occurs');
-    
-    all_budgets.newBudget(name, amount, occurs);
-
-    //go back to home page
-    changePageTo('budgets');
-}
 
 /*
     Jumps to page based on pageID.
@@ -318,7 +212,7 @@ let detectiveLines = [
     ['Which one would you like to modify?', 'Which budget would you like to make change?'], //5
     ['Here\'s a record of it. What do you want to change?', 'Just fill out the blanks...'], //6
     ['Which one would you like to remove?', 'Just click on the trash can to remove it.'], //7
-    ['What else would you like to do?', 'Are there other things that I can do for you?'], //8
+    ['What else would you like to do?', 'Are there other things that I can do for you?', 'What would you like to do?'], //8
     ['Sorry, you have to complete the form.','Sorry. I can\'t work with incomplete forms.', 'I really can\'t do that.', 'NO.'], //9
     ['That\'s all I can say for now', 'There\'s nothing much other than that.'] //10
 ];
@@ -344,7 +238,7 @@ function updateLine(new_line){
 
 //-------------------Settings-------------------
 function changeCurrency(){
-    document.getElementById("id_applied").innerHTML = "change saved."
+    document.getElementById("id_applied").innerHTML = "saved changes."
     let e = document.getElementById("currency");
     currency = e.options[e.selectedIndex].text;
     updateTotalBalance();
@@ -371,7 +265,7 @@ function changeApperance(){
         main.style.backgroundPositionY = "30%, 100%";
     }
 
-    document.getElementById("appearance_applied").innerHTML = "change saved."
+    document.getElementById("appearance_applied").innerHTML = "saved changes."
 }
 
 
