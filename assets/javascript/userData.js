@@ -1,9 +1,3 @@
-let user_income = []; //2D array: each element is an array [item, amount, date]
-let user_expense = []; //2D array: each element is an array [item, amount, date, budget]
-let total_balance = 1570; //total balance of user (set to match config)
-let item_index = -1; //item to edit 
-let tolerance = 0;
-
 //Just for fun
 function resetTolerance(){
     tolerance = 0;
@@ -117,8 +111,9 @@ function generateTableButton(table, data) {
             let text = document.createTextNode(element[entry]);
             cell.appendChild(text);
         }
-        let edit = document.createElement("BUTTON");
+        let edit = document.createElement("button");
         edit.innerHTML = 'edit';
+        edit.className = 'edit-button';
         edit.id = i;
         row.appendChild(edit);
         edit.onclick = function(){
@@ -148,7 +143,7 @@ function loadModifyExpense(index, data){
     document.getElementById("item").setAttribute('value', data[index][0]);
     document.getElementById("amount").setAttribute('value', data[index][1]);
     document.getElementById("date").setAttribute('value', data[index][2]);
-    document.getElementById("budget").setAttribute('value', data[index][3]);
+    document.getElementById("budget").selectedIndex = all_budgets.getBudgetIndex(data[index][3]) + 1;
 }
 
 function modifyIncome(){
@@ -167,7 +162,8 @@ function modifyIncome(){
         
         //go back to home page
         updateStatus(3);
-        changePageTo('home');
+        changePageTo('income-history');
+        displayTableButton(user_income);
         updateTotalBalance();
     }
 }
@@ -183,7 +179,7 @@ function modifyExpense(){
 
     if(item && amount && date){
         if(select_index){
-            all_budgets.budgets[select_index-1].amount_used += amount;
+            all_budgets.budgets[select_index-1].amount_used += amount; //fix
             budget = all_budgets.budgets[select_index-1].name;
         }
         //modify item at given index
@@ -195,7 +191,8 @@ function modifyExpense(){
         
         //go back to home page
         updateStatus(3);
-        changePageTo('home');
+        changePageTo('expense-history');
+        displayTableButton(user_expense);
         updateTotalBalance();
     }
 }
@@ -217,5 +214,5 @@ function removeExpense(){
 }
 
 function confirmMsg(){
-
+    //add confirmation message when deleting item
 }

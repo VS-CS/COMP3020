@@ -198,6 +198,10 @@ h1 {
     height: 300px;
 }
 
+th {
+    background-color: #99775c;
+}
+
 select{
     cursor: pointer;
 }
@@ -207,8 +211,21 @@ option{
 }
 
 button{
+    background-color: #99775c;
+    border-color: #5e361d;
     font-size: 1.5em;
     cursor: pointer;
+    border-style:outset;
+}
+
+button.edit-button{
+    font-size: 1em;
+}
+
+button:hover{
+    background-color: #99775c;
+    border-color: #5e361d;
+    border-style:inset;
 }
 
 input{

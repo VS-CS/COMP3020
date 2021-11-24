@@ -1,5 +1,11 @@
 let currency = '$';
 let detective_img = 'normal'; //detective appearance
+let user_income = []; //2D array: each element is an array [item, amount, date]
+let user_expense = []; //2D array: each element is an array [item, amount, date, budget]
+let total_balance = 1570; //total balance of user (set to match config)
+let item_index = -1; //item to edit 
+let tolerance = 0;
+
 
 class Budget {
     constructor(name, amount, occurs){
