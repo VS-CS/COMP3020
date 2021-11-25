@@ -225,6 +225,10 @@ button{
     border-style:outset;
 }
 
+table{
+    width: 100%;
+}
+
 button.edit-button{
     font-size: 1em;
 }
