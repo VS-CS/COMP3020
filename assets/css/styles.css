@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Shippori+Antique&display=swap');
 
 * {
     margin: 0;
@@ -22,6 +21,10 @@
 
 h1 {
     font-size: 2em;
+}
+
+.total-balance{
+    text-shadow: white 0px 0px 10px;
 }
 
 .screen_aspect_ratio {
@@ -142,10 +145,6 @@ h1 {
     background-color: var(--dialog-hover-colour)
 }
 
-/*.total-balance {
-    font-size: 0.5em;
-}*/
-
 .image {
     height: 100%;
     object-fit: scale-down;
@@ -248,7 +247,6 @@ input{
         font-size: calc(var(--text-size-multiplyer)*1vw/(9/16));
     }
 }
-
 
 /*-----------------------Detective Dialogue-----------------------------*/
 .box{
