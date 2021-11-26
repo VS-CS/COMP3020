@@ -250,7 +250,7 @@ function updateLine(new_line){
 
 //-------------------Settings-------------------
 function changeCurrency(){
-    document.getElementById("id_applied").innerHTML = "saved changes."
+    document.getElementById("id_applied").innerHTML = "applied!"
     let e = document.getElementById("currency");
     currency = e.options[e.selectedIndex].text;
     updateTotalBalance();
@@ -277,7 +277,7 @@ function changeApperance(){
         main.style.backgroundPositionY = "30%, 100%";
     }
 
-    document.getElementById("appearance_applied").innerHTML = "saved changes."
+    document.getElementById("appearance_applied").innerHTML = "applied!"
 }
 
 

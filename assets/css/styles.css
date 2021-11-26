@@ -14,8 +14,9 @@
 :root {
     --top-bar-size: 20%;
     --body-size: 80%;
-    --dialog-background-colour: rgba(78, 44, 22, 0.75);
-    --dialog-hover-colour: #99775c;
+    --dialog-background-colour: rgba(169,151,132, 0.8);
+    --dialog-border-colour:  rgb(42,32,23);
+    --dialog-hover-colour: #a08065;
     --text-size-multiplyer: 2;
 }
 
@@ -38,7 +39,7 @@ h1 {
 
 .main {
     height: 100%;
-    background-image: url('Detective.svg'), linear-gradient(rgb(96,78,66), rgb(94,76,64), rgb(96,78,66));
+    background-image: url('Detective.svg'), linear-gradient(rgb(93,79,68), rgb(77, 67, 59), rgb(59, 52, 46));
     background-repeat: no-repeat;
     background-size: 90%, 100% 40.2%;
     background-position-x: center;
@@ -128,7 +129,7 @@ h1 {
     display: block;
     background-color: var(--dialog-background-colour);
     border-style: outset;
-    border-color: #5e361d;
+    border-color: var(--dialog-border-colour);
     margin-top: 2%;
     font-size: 1.2em;
     cursor: pointer;
@@ -229,13 +230,12 @@ table{
     width: 100%;
 }
 
-button.edit-button{
+button.edit-button, .apply {
     font-size: 1em;
 }
 
 button:hover{
-    background-color: #99775c;
-    border-color: #5e361d;
+    background-color: #72553e;
     border-style:inset;
 }
 
@@ -253,7 +253,7 @@ input{
 /*-----------------------Detective Dialogue-----------------------------*/
 .box{
 	border-style: outset;
-	border-color: #5e361d;
+	border-color: var(--dialog-border-colour);
  	background: var(--dialog-background-colour);
  	display: inline-block;
     margin-left: 5%;

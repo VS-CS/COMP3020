@@ -41,6 +41,7 @@ function getBudgetAnalysis(){
     } else{
         updateStatus(10);
         changePageTo("analysis");
+        displayChart('Total Spendings', createDataTable(getExpenseMap()));
         document.getElementById("else").style.display= "none";
     }
 }
